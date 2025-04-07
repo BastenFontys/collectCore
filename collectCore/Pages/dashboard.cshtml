@@ -1,0 +1,52 @@
+﻿@page
+@model collectCore.Pages.dashboardModel
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "dashboard";
+}
+
+<div>
+    <section id="graph">
+        <div>
+            <h1>Welkom, Basten!</h1>
+        </div>
+        <div>
+            <p>Collection:</p>
+            <a href="#">My collection</a>
+        </div>
+        <div id="graphdiv">
+            <canvas id="myChart"></canvas>
+            <div>
+                <a href="#">1W</a>
+                <a href="#">1M</a>
+                <a href="#">3M</a>
+                <a href="#">6M</a>
+                <a href="#">1Y</a>
+            </div>
+        </div>
+    </section>
+    <section id="hotItems">
+        <h1>Hot items</h1>
+        <hr>
+        <div>
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+        </div>
+    </section>
+    <section id="dashCards">
+        <h1>Your cards</h1>
+        <hr>
+        <div>
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+            <img src="Foto_empty.jpg" alt="no image">
+        </div>
+    </section>
+</div>

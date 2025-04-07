@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - collectCore</title>
+    <script type="importmap"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/collectCore.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div id="main-container">
+        <section id="sidebar">
+            <img src="~/LogoCc2.png" alt="logo_collectCore">
+            <button>Profile</button>
+            <input type="text" placeholder="Search">
+            <hr>
+            <nav>
+                <ul>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/feed">Feed</a></li>
+                    <li><a href="/collection">My collection</a></li>
+                    <li><a href="/marketplace">Marketplace</a></li>
+                </ul>
+            </nav>
+        </section>
+        @RenderBody()
+    </div>
+
+    <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

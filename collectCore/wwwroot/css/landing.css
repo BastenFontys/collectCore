@@ -1,0 +1,110 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(203, 108, 230, 1);
+    position: fixed;
+    top: 0;
+}
+
+header nav ul{
+    width: 65vw;
+    height: 68px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 5%;
+    list-style: none;
+    padding: 0;
+}
+
+header nav a{
+    font-family: 'arial black';
+    color: white;
+    text-align: center;
+    text-decoration: none; 
+    text-wrap:nowrap;
+}
+
+header nav a:hover {
+    color: rgba(136, 29, 166, 1);
+}
+
+header input[type=text]{
+    width: 25vw;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+}
+
+
+div#main-container{
+    display: flex;
+    margin-top: 100px;
+}
+
+
+section#sloganNlogo{
+    display: flex;
+    height: 600px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'arial black';
+    color: rgba(136, 29, 166, 1);
+    width: 50vw;
+}
+
+section#sloganNlogo>img {
+    width:60%;
+}
+
+section#sloganNlogo>h1 {
+    margin-left: 40px;
+    letter-spacing: 5px;
+    word-spacing: 2px;
+}
+
+section#signup {
+    display: flex;
+    height: 600px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'arial black';
+    color: rgba(136, 29, 166, 1);
+    width: 50vw;
+}
+
+section#signup>p{
+    max-width: 60%;
+    letter-spacing: 3px;
+    word-spacing: 1px;
+}
+
+section#signup>a{
+    margin-top: 10px;
+}
+
+section#signup>button{
+    margin-top: 35px;
+    color: white;
+    font-family: 'arial black';
+    font-size: 15px;
+    padding: 12px 35px;
+    background: rgba(180, 73, 210, 1);
+    border: 0px;
+}
+
+section#signup>button:hover{
+    background-color: rgba(136, 29, 166, 1);
+}
+

@@ -1,0 +1,52 @@
+﻿html, body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(203, 108, 230, 1);
+    position: fixed;
+    top: 0;
+}
+
+header nav ul {
+    width: 65vw;
+    height: 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    list-style: none;
+    padding: 0;
+}
+
+header nav a {
+    font-family: 'arial black';
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-wrap: nowrap;
+}
+
+header nav a:hover {
+    color: rgba(136, 29, 166, 1);
+}
+
+header input[type=text] {
+    width: 25vw;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+}
+
+
+div#main-container {
+    display: flex;
+    margin-top: 100px;
+}

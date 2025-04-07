@@ -1,0 +1,47 @@
+﻿@page
+@model collectCore.Pages.IndexModel
+@{
+	Layout = null;
+	ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - collectCore</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/profile">Home</a></li>
+                <input type="text" placeholder="Search">
+                <li><a href="#">About us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main-container">
+        <section id="sloganNlogo">
+            <img src="~/logocc1.png" alt="logo_collectCore">
+            <h1>Collect more, connect more.</h1>
+        </section>
+        <section id="signup">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.
+            </p>
+            <button>Sign up</button>
+            <a href="/login">Or login</a>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@page
+@model collectCore.Pages.profileModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Profile Page";
+}
+
+<div>
+    <section id="profile">
+        <div id="pfp"></div>
+        <div>
+            <div id="username">
+                <h1>username</h1>
+                <button>Edit</button>
+            </div>
+            <div id="acc_social">
+                <p>100 berichten</p>
+                <p>100 volgers</p>
+                <p>100 volgend</p>
+            </div>
+            <div id="bio">
+                <p>
+                    Lorem ipsum dolor sit amet. Ea aliquid ducimus qui nesciunt
+                    quidem aut doloribus nihil. Ut sint incidunt ab nobis sint
+                    ut libero quod et distinctio perferendis ut maxime tempore
+                    ad temporibus voluptates sed corporis aperiam. Est saepe
+                    dolores est accusantium corporis ex culpa temporibus.
+                </p>
+            </div>
+            <div id="acc_info">
+                <div>
+                    <p>Total sales</p>
+                    <p>Total items</p>
+                    <p>Total value</p>
+                    <p>Collections</p>
+                </div>
+                <div>
+                    <p>100</p>
+                    <p>100</p>
+                    <p>€100,-</p>
+                    <p>100</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feed">
+        <hr>
+        <div>
+            @{
+                for (int i = 0; i < 9; i++)
+                {
+                    <img src="Foto_empty.jpg" alt="no image">
+                }
+            }
+        </div>
+    </section>
+</div>

@@ -1,0 +1,280 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+div#main-container {
+    display: flex;
+}
+
+div#main-container > div {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin-left: 15%;
+}
+
+
+
+section#sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(203, 108, 230, 1);
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+}
+
+section#sidebar > img {
+    margin-top: 15px;
+    width: 50%;
+}
+
+section#sidebar > button {
+    margin-top: 35px;
+    color: white;
+    font-family: 'arial black';
+    font-size: 15px;
+    padding: 12px 35px;
+    border-radius: 25px;
+    background: rgba(180, 73, 210, 1);
+    border: 0px;
+}
+
+section#sidebar > button:hover {
+    background-color: rgba(136, 29, 166, 1);
+}
+
+section#sidebar > input[type=text] {
+    padding: 10px 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 20px;
+}
+
+section#sidebar > hr {
+    margin-top: 30px;
+    border: 1px solid rgba(180, 73, 210, 1);
+    width: 75%;
+}
+
+section#sidebar > nav ul {
+    list-style: none;
+    margin-right: 50px;
+}
+
+section#sidebar > nav li {
+    margin-bottom: 35px;
+}
+
+section#sidebar > nav a {
+    color: white;
+    font-size: larger;
+    font-family: 'arial black';
+    text-align: center;
+    text-decoration: none;
+    text-wrap: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+section#sidebar > nav a:hover {
+    color: rgba(136, 29, 166, 1);
+    transition-property: all;
+}
+
+
+
+/*
+    Profile section voor IndexProfile
+*/
+
+section#profile {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 400px;
+    padding-left: 10%;
+    font-family: 'arial black';
+}
+
+section#profile > div {
+    display: flex;
+    flex-direction: column;
+}
+
+section#profile > div#pfp {
+    min-height: 150px;
+    min-width: 150px;
+    border-radius: 100%;
+    background-color: rgba(184, 184, 184, 1);
+}
+
+section#profile > div > div {
+    display: flex;
+    flex-direction: row;
+    padding-left: 15%;
+}
+
+section#profile > div > div#username {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 20%;
+}
+
+section#profile > div > div#username > button {
+    height: 20px;
+}
+
+section#profile > div > div#acc_social {
+    display: flex;
+    justify-content: space-between;
+    max-width: 40%;
+}
+
+section#profile > div > div#bio {
+    max-width: 50%;
+}
+
+section#profile > div > div#acc_info {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    font-size: small;
+}
+
+section#profile > div > div#acc_info > div {
+    height: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+section#feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section#feed > hr {
+    width: 70%;
+}
+
+section#feed > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+section#feed > div > img {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+
+
+/*
+    Dashboard section voor IndexDashboard
+*/
+
+
+section#graph {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-left: 100px;
+    margin-top: 75px;
+    font-family: 'arial black';
+}
+
+section#graph > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+section#graph > div#graphdiv {
+    display: flex;
+    flex-direction: column;
+}
+
+section#graph > div#graphdiv > div {
+    width: 900px;
+    display: flex;
+    justify-content: space-around;
+}
+
+section#graph > div#graphdiv > canvas {
+    margin-top: 10px;
+    width: 900px !important;
+    height: 400px !important;
+}
+
+
+
+section#hotItems {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 50px;
+    font-family: 'arial black';
+}
+
+section#hotItems > h1 {
+    margin-left: 100px;
+}
+
+section#hotItems > hr {
+    width: 200px;
+    margin-left: 100px;
+}
+
+section#hotItems > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+section#hotItems > div > img {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+
+
+section#dashCards {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 75px;
+    font-family: 'arial black';
+}
+
+section#dashCards > h1 {
+    margin-left: 100px;
+}
+
+section#dashCards > hr {
+    width: 200px;
+    margin-left: 100px;
+}
+
+section#dashCards > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+section#dashCards > div > img {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
