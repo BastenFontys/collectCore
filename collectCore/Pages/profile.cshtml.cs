@@ -1,24 +1,39 @@
+using collectCore.Models;
+using collectCore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using collectCore.Models;
-using collectCore.Repos;
 
 namespace collectCore.Pages
 {
     public class profileModel : PageModel
     {
-        private readonly UserRepo _repo;
+        private readonly UserService _userService;
 
-        public profileModel(UserRepo repo)
+        public profileModel(UserService userService)
         {
-            _repo = repo;
+            _userService = userService;
         }
 
-        public List<User> Users { get; set; }
+        [BindProperty]
+        public User User { get; set; }
 
-        public void OnGet()
+
+        public async Task<IActionResult> OnGet(int id)
         {
-            Users = _repo.GetAll();
+            if (Request.Cookies["cookie"] == null)
+            {
+                // Not logged in? Send to login
+                return RedirectToPage("/Login");
+            }
+
+            var user = await _userService.GetUserProfileAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            User = user;
+            return Page();
         }
     }
 }

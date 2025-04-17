@@ -1,5 +1,5 @@
 ﻿@page
-@model collectCore.Pages.IndexModel
+@model collectCore.Pages.loginModel
 @{
     Layout = null;
     ViewData["Title"] = "Login";
@@ -26,9 +26,11 @@
     </header>
     <div id="main-container">
         <div>
-            <input type="text" placeholder="E-mail">
-            <input type="text" placeholder="Password">
-            <button>Log in</button>
+            <form method="post">
+                <input type="text" name="Cookievalue" placeholder="E-mail">
+                <input type="text" placeholder="Password">
+                <button type="submit">Log in</button>
+            </form>
         </div>
     </div>
 </body>

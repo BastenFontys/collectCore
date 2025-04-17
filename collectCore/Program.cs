@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using collectCore.Data;
+using collectCore.Repos;
+using collectCore.Services;
+using collectCore.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 

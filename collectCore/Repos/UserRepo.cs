@@ -1,20 +1,59 @@
-﻿using collectCore.Data;
+﻿using Microsoft.Data.SqlClient;
 using collectCore.Models;
+using collectCore.Interfaces;
 
 namespace collectCore.Repos
 {
-    public class UserRepo
+    public class UserRepo : IUserRepo
     {
-        private readonly ApplicationDbContext _context;
+        private readonly string _connectionString;
 
-        public UserRepo(ApplicationDbContext context)
+        public UserRepo(IConfiguration config)
         {
-            _context = context;
+            _connectionString = config.GetConnectionString("DefaultConnection");
         }
 
-        public List<User> GetAll()
+
+        public async Task<User> GetByIdAsync(int id)
         {
-            return _context.Users.ToList();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SELECT * FROM [CoreC].[dbo].[User] WHERE User_ID = @id;", connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new User
+                                {
+                                    UserID = (int)reader["User_ID"],
+                                    Username = reader["Username"].ToString(),
+                                    Email = reader["Email"].ToString(),
+                                    Password = reader["Password"].ToString(),
+                                    AdressStreet = reader["Adress_street"].ToString(),
+                                    AdressNumber = (int)reader["Adress_number"],
+                                    Biography = reader["Biography"].ToString()
+                                };
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        Console.WriteLine("stackTrace: " + ex.StackTrace);
+                        return null;
+                    }
+                }
+            }
         }
     }
 }
