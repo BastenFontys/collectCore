@@ -17,5 +17,10 @@ namespace collectCore.Services
         {
             return await _userRepo.GetByIdAsync(id);
         }
+
+        public async Task<User> GetByCredentialAsync(string email, string password)
+        {
+            return await _userRepo.GetByCredentialsAsync(email, password);
+        }
     }
 }
