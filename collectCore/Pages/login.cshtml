@@ -1,37 +1,14 @@
 ﻿@page
 @model collectCore.Pages.loginModel
 @{
-    Layout = null;
+    Layout = "_layoutLogin";
     ViewData["Title"] = "Login";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - collectCore</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/profile">Home</a></li>
-                <input type="text" placeholder="Search">
-                <li><a href="#">About us</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div id="main-container">
-        <div>
-            <form method="post">
-                <input type="text" name="Email" placeholder="E-mail">
-                <input type="text" name="Password" placeholder="Password">
-                <button type="submit">Log in</button>
-            </form>
-        </div>
-    </div>
-</body>
-</html>
+<div>
+    <form method="post">
+        <input type="text" name="Email" placeholder="E-mail">
+        <input type="text" name="Password" placeholder="Password">
+        <button type="submit">Log in</button>
+    </form>
+</div>
