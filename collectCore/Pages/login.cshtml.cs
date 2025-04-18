@@ -1,14 +1,20 @@
+using collectCore.Services;
+using collectCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace collectCore.Pages
 {
     public class loginModel : PageModel
     {
         [BindProperty]
-        public string Cookievalue { get; set; }
+        public string Email { get; set; }
 
+        [BindProperty]
+        public string Password { get; set; }
 
+        public User User { get; set; }
 
         private CookieOptions cookieOptions = new CookieOptions
         {
@@ -16,6 +22,16 @@ namespace collectCore.Pages
             HttpOnly = true,
             Secure = true     
         };
+
+        private readonly UserService _userService;
+
+        public loginModel(UserService userService)
+        {
+            _userService = userService;
+        }
+
+
+
 
         public IActionResult OnGet()
         {
@@ -27,8 +43,18 @@ namespace collectCore.Pages
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
+            var user = await _userService.GetByCredentialAsync(Email, Password);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            User = user;
+
+            string Cookievalue = User.UserID.ToString();
+
             Response.Cookies.Append("auth_user", Cookievalue, cookieOptions);
 
             return RedirectToPage("/Profile");

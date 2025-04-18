@@ -18,13 +18,15 @@ namespace collectCore.Pages
         public User User { get; set; }
 
 
-        public async Task<IActionResult> OnGet(int id)
+        public async Task<IActionResult> OnGet()
         {
-            if (Request.Cookies["cookie"] == null)
+            var cookie = Request.Cookies["auth_user"];
+            if (cookie == null)
             {
-                // Not logged in? Send to login
                 return RedirectToPage("/Login");
             }
+
+            int id = int.Parse(cookie);
 
             var user = await _userService.GetUserProfileAsync(id);
             if (user == null)
