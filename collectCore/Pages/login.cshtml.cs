@@ -32,7 +32,6 @@ namespace collectCore.Pages
 
 
 
-
         public IActionResult OnGet()
         {
             if (Request.Cookies["auth_user"] != null)

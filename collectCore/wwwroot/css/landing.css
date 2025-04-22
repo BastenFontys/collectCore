@@ -94,7 +94,7 @@ section#signup>a{
     margin-top: 10px;
 }
 
-section#signup>button{
+section#signup>a>button{
     margin-top: 35px;
     color: white;
     font-family: 'arial black';
@@ -104,7 +104,7 @@ section#signup>button{
     border: 0px;
 }
 
-section#signup>button:hover{
+section#signup>a>button:hover{
     background-color: rgba(136, 29, 166, 1);
 }
 

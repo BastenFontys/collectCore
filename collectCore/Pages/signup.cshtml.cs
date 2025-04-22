@@ -5,8 +5,14 @@ namespace collectCore.Pages
 {
     public class signupModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (Request.Cookies["auth_user"] != null)
+            {
+                return RedirectToPage("/Dashboard");
+            }
+
+            return Page();
         }
     }
 }

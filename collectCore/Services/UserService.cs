@@ -22,5 +22,10 @@ namespace collectCore.Services
         {
             return await _userRepo.GetByCredentialsAsync(email, password);
         }
+
+        public async Task<User> CreateUser(string username, string email, string password, string address_street = "", int address_number = 0)
+        {
+            return await _userRepo.CreateUser(username, email, password, address_street, address_number);
+        }
     }
 }
