@@ -8,6 +8,6 @@ namespace collectCore.Interfaces
 
         Task<User> GetByCredentialsAsync(string email, string password);
 
-        Task<User> CreateUser(string username, string email, string password, string address_street = "", int address_number = 0);
+        Task<User> CreateUser(string username, string email, string password, string? adress_street, int? adress_number);
     }
 }
