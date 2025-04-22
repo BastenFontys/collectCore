@@ -101,7 +101,7 @@ namespace collectCore.Repos
             }
         }
 
-        public async Task<User> CreateUser(string username, string email, string password, string? adress_street, int? adress_number)
+        public async Task<User> CreateUser(string username, string email, string password, string? adress_street, int adress_number)
         {
             int NewUserID;
             try
@@ -114,7 +114,14 @@ namespace collectCore.Repos
                         command.Parameters.AddWithValue("@username", username);
                         command.Parameters.AddWithValue("@email", email);
                         command.Parameters.AddWithValue("@password", password);
-                        command.Parameters.AddWithValue("@adress_street", adress_street);
+                        if (adress_street == null)
+                        {
+                            command.Parameters.AddWithValue("@adress_street", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@adress_street", adress_street);
+                        }
                         command.Parameters.AddWithValue("@adress_number", adress_number);
 
                         NewUserID = (int)await command.ExecuteScalarAsync();
