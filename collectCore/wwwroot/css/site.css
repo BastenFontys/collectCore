@@ -278,3 +278,53 @@ section#dashCards > div > img {
     padding-top: 2%;
     padding-bottom: 1%;
 }
+
+
+
+/*
+    Collection section voor Collection
+*/
+
+
+
+section#collections {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 50px;
+    font-family: 'arial black';
+}
+
+section#collections > h1 {
+    margin-left: 100px;
+}
+
+section#collections > hr {
+    width: 200px;
+    margin-left: 100px;
+}
+
+section#collections > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+section#collections > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    background-color: grey;
+    width: 25vw;
+    height: 25vw;
+}
+
+section#collections > div > div > button > a {
+    color: black;
+    font-family: 'arial black';
+    text-decoration: none;
+}
