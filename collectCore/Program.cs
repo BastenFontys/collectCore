@@ -11,6 +11,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<UserService>();
 
+builder.Services.AddScoped<ICollectionRepo, CollectionRepo>();
+builder.Services.AddScoped<CollectionService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
