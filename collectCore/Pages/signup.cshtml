@@ -1,0 +1,18 @@
+﻿@page
+@model collectCore.Pages.signupModel
+@{
+    Layout = "_layoutLogin";
+    ViewData["Title"] = "Signup";
+}
+
+<div>
+    <form method="post">
+        <input type="text" name="Username" placeholder="Username">
+        <input type="text" name="Email" placeholder="E-mail">
+        <input type="text" name="Password" placeholder="Password">
+        <input type="text" name="AdressStreet" placeholder="Street">
+        <input type="text" name="AdressNumber" placeholder="House number">
+        <input type="text" name="Biography" placeholder="Biography">
+        <button type="submit">Sign up</button>
+    </form>
+</div>
