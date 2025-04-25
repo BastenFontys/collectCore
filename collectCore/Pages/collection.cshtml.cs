@@ -8,6 +8,7 @@ namespace collectCore.Pages
     public class collectionModel : PageModel
     {
         private readonly CollectionService _collectionService;
+        
         public collectionModel(CollectionService collectionService)
         {
             _collectionService = collectionService;

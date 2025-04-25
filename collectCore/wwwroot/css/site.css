@@ -311,6 +311,29 @@ section#collections > div {
     background-color: white;
 }
 
+section#collections > button {
+    margin-top: 20px;
+    margin-left: 100px;
+    color: white;
+    font-family: 'arial black';
+    font-size: 15px;
+    padding: 12px 35px;
+    width: 15vw;
+    border-radius: 25px;
+    background: rgba(235, 233, 70, 1);
+    border: 0px;
+}
+
+section#collections > button:hover {
+    background-color: rgba(181, 178, 0, 1);
+}
+
+section#collections > button > a {
+    color: white;
+    font-family: 'arial black';
+    text-decoration: none;
+}
+
 section#collections > div > div {
     display: flex;
     flex-direction: column;
@@ -327,4 +350,8 @@ section#collections > div > div > button > a {
     color: black;
     font-family: 'arial black';
     text-decoration: none;
+}
+
+section#collections > form {
+    margin-left: 100px;
 }
