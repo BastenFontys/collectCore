@@ -9,5 +9,7 @@ namespace collectCore.Interfaces
         Task<Collection> GetCollectionByID(int id);
 
         Task<Collection> CreateCollection(int userID, string name);
+
+        void DeleteCollection(int id);
     }
 }

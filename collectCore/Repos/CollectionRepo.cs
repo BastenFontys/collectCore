@@ -126,5 +126,42 @@ namespace collectCore.Repos
                 return null;
             }
         }
+
+        public void DeleteCollection(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("DELETE FROM [CoreC].[dbo].[Collection] WHERE Collection_ID = @id;", connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Collection
+                                {
+                                    CollectionID = (int)reader["Collection_ID"],
+                                    Name = reader["Name"].ToString()
+                                };
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        Console.WriteLine("stackTrace: " + ex.StackTrace);
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

@@ -37,5 +37,25 @@ namespace collectCore.Pages
             Collections = collections;
             return Page();
         }
+
+
+        public async Task<IActionResult> OnPost()
+        {
+            var cookie = Request.Cookies["auth_user"];
+            if (cookie == null)
+            {
+                return RedirectToPage("/Login");
+            }
+
+            int userid = int.Parse(cookie);
+
+            var NewCollection = await _collectionService.CreateCollection(userid, Name);
+            if (NewCollection == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("/collection");
+        }
     }
 }
