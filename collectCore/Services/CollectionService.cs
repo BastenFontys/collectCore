@@ -27,5 +27,10 @@ namespace collectCore.Services
         {
             return await _collectionRepo.CreateCollection(userID, name);
         }
+
+        public void DeleteCollection(int id)
+        {
+            _collectionRepo.DeleteCollection(id);
+        }
     }
 }

@@ -17,6 +17,9 @@ namespace collectCore.Pages
         [BindProperty]
         public List<Collection> Collections { get; set; }
 
+        [BindProperty]
+        public int collectionID { get; set; }
+
 
         public async Task<IActionResult> OnGet()
         {
@@ -49,11 +52,7 @@ namespace collectCore.Pages
 
             int userid = int.Parse(cookie);
 
-            var NewCollection = await _collectionService.CreateCollection(userid, Name);
-            if (NewCollection == null)
-            {
-                return NotFound();
-            }
+            _collectionService.DeleteCollection(collectionID);
 
             return RedirectToPage("/collection");
         }

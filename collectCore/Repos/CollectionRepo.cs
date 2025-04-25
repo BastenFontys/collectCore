@@ -129,38 +129,23 @@ namespace collectCore.Repos
 
         public void DeleteCollection(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                using (SqlCommand command = new SqlCommand("DELETE FROM [CoreC].[dbo].[Collection] WHERE Collection_ID = @id;", connection))
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    command.Parameters.AddWithValue("@id", id);
-                    try
-                    {
-                        connection.Open();
+                    connection.Open();
 
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                return new Collection
-                                {
-                                    CollectionID = (int)reader["Collection_ID"],
-                                    Name = reader["Name"].ToString()
-                                };
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
+                    using (SqlCommand command = new SqlCommand("DELETE FROM [CoreC].[dbo].[Collection] WHERE Collection_ID = @id;", connection))
                     {
-                        Console.WriteLine("Error: " + ex.Message);
-                        Console.WriteLine("stackTrace: " + ex.StackTrace);
-                        return null;
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("stackTrace: " + ex.StackTrace);
             }
         }
     }
