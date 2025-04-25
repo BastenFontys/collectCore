@@ -2,51 +2,12 @@
 {
     public class Item
     {
-        private long itemID;
+        public int ItemID { get; set; }
 
-        public long ItemID
-        {
-            get { return itemID; }
-            set
-            {
-                itemID = value;
-            }
-        }
+        public string Name { get; set; }
 
+        public float ItemValue { get; set; }
 
-        private string name;
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-            }
-        }
-
-
-        private float itemValue;
-
-        public float ItemValue
-        {
-            get { return itemValue; }
-            set
-            {
-                itemValue = value;
-            }
-        }
-
-
-        private string category;
-
-        public string Category
-        {
-            get { return category; }
-            set
-            {
-                category = value;
-            }
-        }
+        public string Category { get; set; }
     }
 }
