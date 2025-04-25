@@ -13,9 +13,19 @@ namespace collectCore.Services
             _collectionRepo = collectionRepo;
         }
 
-        public async Task<List<Collection>> GetCollectionsByUserID(int id)
+        public async Task<List<Collection>> GetCollectionsByUserID(int userID)
         {
-            return await _collectionRepo.GetCollectionsByUserID(id);
+            return await _collectionRepo.GetCollectionsByUserID(userID);
+        }
+
+        public async Task<Collection> GetCollectionByID(int id)
+        {
+            return await _collectionRepo.GetCollectionByID(id);
+        }
+
+        public async Task<Collection> CreateCollection(int userID, string name)
+        {
+            return await _collectionRepo.CreateCollection(userID, name);
         }
     }
 }

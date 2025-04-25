@@ -27,7 +27,7 @@ namespace collectCore.Pages
 
         private CookieOptions cookieOptions = new CookieOptions
         {
-            Expires = DateTime.Now.AddMinutes(1), // Short for testing; increase for production
+            Expires = DateTime.Now.AddMinutes(2), // Short for testing; increase for production
             HttpOnly = true,
             Secure = true
         };
