@@ -1,6 +1,34 @@
 ﻿@page
 @model collectCore.Pages.collectionModel
 @{
-	Layout = "_Layout";
-	ViewData["Title"] = "collection";
+    Layout = "_Layout";
+    ViewData["Title"] = "collection";
 }
+@using collectCore.Models;
+
+<div>
+    <section id="collections">
+        <h1>Your collections</h1>
+        <hr>
+        <button>
+            <a href="/Creation/Create_Collection">Create</a>
+        </button>
+        <div>
+            @{
+                foreach(Collection collection in Model.Collections)
+                {
+                    <div>
+                        <p>@collection.Name</p>
+                        <button>
+                            <a href="#">View</a>
+                        </button>
+                        <form method="post">
+                            <input type="hidden" name="collectionID" value="@collection.CollectionID" />
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+</div>

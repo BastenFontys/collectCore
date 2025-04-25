@@ -1,0 +1,17 @@
+﻿@page
+@model collectCore.Pages.Creation.Create_CollectionModel
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "collection";
+}
+
+<div>
+    <section id="collections">
+        <h1>Create collection</h1>
+        <hr>
+        <form method="post">
+            <input type="text" name="Name" placeholder="Name">
+            <button type="submit">Create</button>
+        </form>
+    </section>
+</div>
