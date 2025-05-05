@@ -13,6 +13,43 @@ namespace collectCore.Repos
             _connectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        public async Task<List<Item>> GetAllItems()
+        {
+            List<Item> items = new List<Item>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SELECT Item_ID, Name, Value FROM [CoreC].[dbo].[Item];", connection))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Item item = new Item
+                                {
+                                    ItemID = (int)reader["Item_ID"],
+                                    Name = reader["Name"].ToString(),
+                                    ItemValue = Convert.ToSingle(reader["Value"])
+                                };
+                                items.Add(item);
+                            }
+                            return items;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        Console.WriteLine("stackTrace: " + ex.StackTrace);
+                        return null;
+                    }
+                }
+            }
+        }
+
         public async Task<List<Item>> GetItemsByCollectionID(int collectionID)
         {
             List<Item> items = new List<Item>();
