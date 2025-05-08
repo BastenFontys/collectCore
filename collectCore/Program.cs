@@ -14,6 +14,9 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ICollectionRepo, CollectionRepo>();
 builder.Services.AddScoped<CollectionService>();
 
+builder.Services.AddScoped<IItemRepo, ItemRepo>();
+builder.Services.AddScoped<ItemService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

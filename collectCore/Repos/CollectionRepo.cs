@@ -148,5 +148,53 @@ namespace collectCore.Repos
                 Console.WriteLine("stackTrace: " + ex.StackTrace);
             }
         }
+
+        public void AddItemToCollection(int id, int itemid)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("INSERT INTO [CoreC].[dbo].[Collection_item] (Collection_ID, Item_ID) VALUES (@id, @itemID);", connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@itemID", itemid);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("stackTrace: " + ex.StackTrace);
+            }
+        }
+
+        public void DeleteItemFromCollection(int id, int itemid)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("DELETE FROM [CoreC].[dbo].[Collection_item] WHERE Collection_ID = @id AND Item_ID = @itemID;", connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@itemID", itemid);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("stackTrace: " + ex.StackTrace);
+            }
+        }
     }
 }

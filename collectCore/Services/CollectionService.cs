@@ -1,6 +1,5 @@
 ﻿using collectCore.Interfaces;
 using collectCore.Models;
-using System.Reflection.Metadata.Ecma335;
 
 namespace collectCore.Services
 {
@@ -31,6 +30,16 @@ namespace collectCore.Services
         public void DeleteCollection(int id)
         {
             _collectionRepo.DeleteCollection(id);
+        }
+
+        public void AddItemToCollection(int id, int itemid)
+        {
+            _collectionRepo.AddItemToCollection(id, itemid);
+        }
+
+        public void DeleteItemFromCollection(int id, int itemid)
+        {
+            _collectionRepo.DeleteItemFromCollection(id, itemid);
         }
     }
 }

@@ -11,5 +11,9 @@ namespace collectCore.Interfaces
         Task<Collection> CreateCollection(int userID, string name);
 
         void DeleteCollection(int id);
+
+        void AddItemToCollection(int id, int itemid);
+
+        void DeleteItemFromCollection(int id, int itemid);
     }
 }

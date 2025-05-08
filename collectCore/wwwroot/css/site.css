@@ -355,3 +355,80 @@ section#collections > div > div > button > a {
 section#collections > form {
     margin-left: 100px;
 }
+
+
+
+/*
+    Collection section voor show Collection
+*/
+
+
+
+section#collectionsShow {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 50px;
+    font-family: 'arial black';
+}
+
+section#collectionsShow > h1 {
+    margin-left: 100px;
+}
+
+section#collectionsShow > hr {
+    width: 200px;
+    margin-left: 100px;
+}
+
+section#collectionsShow > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+section#collectionsShow > button {
+    margin-top: 20px;
+    margin-left: 100px;
+    color: white;
+    font-family: 'arial black';
+    font-size: 15px;
+    padding: 12px 35px;
+    width: 15vw;
+    border-radius: 25px;
+    background: rgba(235, 233, 70, 1);
+    border: 0px;
+}
+
+section#collectionsShow > button:hover {
+    background-color: rgba(181, 178, 0, 1);
+}
+
+section#collectionsShow > button > a {
+    color: white;
+    font-family: 'arial black';
+    text-decoration: none;
+}
+
+section#collectionsShow > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    background-color: grey;
+    width: 15vw;
+    height: 25vw;
+}
+
+section#collectionsShow > div > div > button > a {
+    color: black;
+    font-family: 'arial black';
+    text-decoration: none;
+}
+
+section#collectionsShow > form {
+    margin-left: 100px;
+}

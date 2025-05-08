@@ -1,7 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using collectCore.Models;
 using collectCore.Interfaces;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace collectCore.Repos
 {
