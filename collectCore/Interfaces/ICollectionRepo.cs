@@ -13,5 +13,7 @@ namespace collectCore.Interfaces
         void DeleteCollection(int id);
 
         void AddItemToCollection(int id, int itemid);
+
+        void DeleteItemFromCollection(int id, int itemid);
     }
 }

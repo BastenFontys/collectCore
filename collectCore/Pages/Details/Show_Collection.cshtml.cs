@@ -23,7 +23,7 @@ namespace collectCore.Pages.Details
         public List<Item> Items { get; set; }
 
         [BindProperty]
-        public int itemID { get; set; }
+        public int ItemID { get; set; }
 
 
         public async Task<IActionResult> OnGet(int collectionid)
@@ -53,19 +53,17 @@ namespace collectCore.Pages.Details
         }
 
 
-        //public async Task<IActionResult> OnPost()
-        //{
-        //    var cookie = Request.Cookies["auth_user"];
-        //    if (cookie == null)
-        //    {
-        //        return RedirectToPage("/Login");
-        //    }
+        public async Task<IActionResult> OnPost()
+        {
+            var cookie = Request.Cookies["auth_user"];
+            if (cookie == null)
+            {
+                return RedirectToPage("/Login");
+            }
 
-        //    int userid = int.Parse(cookie);
+            _collectionService.DeleteItemFromCollection(Collection.CollectionID, ItemID);
 
-        //    _collectionService.DeleteCollection(collectionID);
-
-        //    return RedirectToPage("/collection");
-        //}
+            return RedirectToPage("/collection");
+        }
     }
 }

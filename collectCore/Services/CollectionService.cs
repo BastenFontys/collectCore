@@ -36,5 +36,10 @@ namespace collectCore.Services
         {
             _collectionRepo.AddItemToCollection(id, itemid);
         }
+
+        public void DeleteItemFromCollection(int id, int itemid)
+        {
+            _collectionRepo.DeleteItemFromCollection(id, itemid);
+        }
     }
 }
