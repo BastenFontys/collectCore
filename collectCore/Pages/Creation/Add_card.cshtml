@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{collectionid:int}"
 @model collectCore.Pages.Creation.Add_cardModel
 @{
     Layout = "_Layout";
@@ -18,7 +18,7 @@
                         <p>@item.Name</p>
                         <p>€@item.ItemValue</p>
                         <form method="post">
-                            <input type="hidden" name="itemID" value="@item.ItemID" />
+                            <input type="hidden" name="ItemID" value="@item.ItemID" />
                             <button type="submit">Add</button>
                         </form>
                     </div>

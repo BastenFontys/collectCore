@@ -151,17 +151,18 @@ namespace collectCore.Repos
 
         public void AddItemToCollection(int id, int itemid)
         {
-            int NewCollectionID;
             try
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("INSERT INTO [CoreC].[dbo].[Collection_item]] (Collection_ID, Item_ID) VALUES (@id, @itemID);", connection))
+                    using (SqlCommand command = new SqlCommand("INSERT INTO [CoreC].[dbo].[Collection_item] (Collection_ID, Item_ID) VALUES (@id, @itemID);", connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
                         command.Parameters.AddWithValue("@itemID", itemid);
+
+                        command.ExecuteNonQuery();
                     }
                 }
             }

@@ -19,8 +19,14 @@ namespace collectCore.Pages.Creation
         [BindProperty]
         public List<Item> Items { get; set; }
 
+        [BindProperty]
+        public int ItemID { get; set; }
 
-        public async Task<IActionResult> OnGet()
+        [BindProperty]
+        public int CollectionID { get; set; }
+
+
+        public async Task<IActionResult> OnGet(int collectionID)
         {
             var cookie = Request.Cookies["auth_user"];
             if (cookie == null)
@@ -34,8 +40,22 @@ namespace collectCore.Pages.Creation
                 return NotFound();
             }
 
+            CollectionID = collectionID;
             Items = items;
             return Page();
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            var cookie = Request.Cookies["auth_user"];
+            if (cookie == null)
+            {
+                return RedirectToPage("/Login");
+            }
+
+            _collectionService.AddItemToCollection(CollectionID, ItemID);
+
+            return RedirectToPage("/collection");
         }
     }
 }
