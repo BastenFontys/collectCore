@@ -1,18 +1,15 @@
-﻿@page "{collectionid:int}"
-@model collectCore.Pages.Details.Show_CollectionModel
+﻿@page
+@model collectCore.Pages.Creation.Add_cardModel
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "collection";
+    ViewData["Title"] = "Add card";
 }
 @using collectCore.Models;
 
 <div>
     <section id="collectionsShow">
-        <h1>@Model.Collection.Name</h1>
+        <h1>Add Card</h1>
         <hr>
-        <button>
-            <a href="/Creation/Add_card">Add card</a>
-        </button>
         <div>
             @{
                 foreach (Item item in Model.Items)
@@ -22,7 +19,7 @@
                         <p>€@item.ItemValue</p>
                         <form method="post">
                             <input type="hidden" name="itemID" value="@item.ItemID" />
-                            <button type="submit">Delete</button>
+                            <button type="submit">Add</button>
                         </form>
                     </div>
                 }

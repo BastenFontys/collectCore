@@ -43,7 +43,7 @@ namespace collectCore.Pages.Details
             Collection = collection;
 
             var items = await _itemService.GetItemsByCollectionID(collectionid);
-            if (collection == null)
+            if (items == null)
             {
                 return NotFound();
             }

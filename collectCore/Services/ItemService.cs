@@ -13,6 +13,11 @@ namespace collectCore.Services
             _itemRepo = itemRepo;
         }
 
+        public async Task<List<Item>> GetAllItems()
+        {
+            return await _itemRepo.GetAllItems();
+        }
+
         public async Task<List<Item>> GetItemsByCollectionID(int collectionID)
         {
             return await _itemRepo.GetItemsByCollectionID(collectionID);
