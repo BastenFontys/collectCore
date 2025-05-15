@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using collectCoreDAL.Interfaces;
 using collectCoreBLL.Models;
 using collectCoreBLL.Mappers;
+using collectCoreDAL.DTO;
 
 namespace collectCoreBLL.Services
 {
@@ -21,8 +22,14 @@ namespace collectCoreBLL.Services
 
         public async Task<List<Collection>> GetCollectionsByUserID(int userID)
         {
-            var dto = await _collectionRepo.GetCollectionsByUserID(userID);
-            return _collectionMapper.ToModel(dto);
+            List<Collection> modelList = new List<Collection>();
+            var dtoList = await _collectionRepo.GetCollectionsByUserID(userID);
+            
+            foreach (CollectionDTO dto in dtoList)
+            {
+                modelList.Add(_collectionMapper.ToModel(dto));
+            }
+            return modelList;
         }
 
         public async Task<Collection> GetCollectionByID(int id)
