@@ -5,6 +5,10 @@ VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "collectCore", "collectCore\collectCore.csproj", "{45444983-8281-4610-BD03-28A23ED1798C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "collectCoreBLL", "collectCoreLogic\collectCoreBLL.csproj", "{E1047625-F803-47D5-9BB6-7E205CD1F749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "collectCoreDAL", "collectCoreDAL\collectCoreDAL.csproj", "{313503CB-2B58-45E4-8F35-6E7763A5B48E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{45444983-8281-4610-BD03-28A23ED1798C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45444983-8281-4610-BD03-28A23ED1798C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45444983-8281-4610-BD03-28A23ED1798C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1047625-F803-47D5-9BB6-7E205CD1F749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1047625-F803-47D5-9BB6-7E205CD1F749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1047625-F803-47D5-9BB6-7E205CD1F749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1047625-F803-47D5-9BB6-7E205CD1F749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{313503CB-2B58-45E4-8F35-6E7763A5B48E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{313503CB-2B58-45E4-8F35-6E7763A5B48E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{313503CB-2B58-45E4-8F35-6E7763A5B48E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{313503CB-2B58-45E4-8F35-6E7763A5B48E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
