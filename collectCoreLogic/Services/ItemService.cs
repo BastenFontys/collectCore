@@ -16,9 +16,10 @@ namespace collectCoreBLL.Services
         private readonly IItemRepo _itemRepo;
         private ItemMapper _itemMapper;
 
-        public ItemService(IItemRepo itemRepo)
+        public ItemService(IItemRepo itemRepo, ItemMapper itemMapper)
         {
             _itemRepo = itemRepo;
+            _itemMapper = itemMapper;
         }
 
         public async Task<List<Item>> GetAllItems()

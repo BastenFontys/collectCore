@@ -1,15 +1,9 @@
-using collectCore.Repos;
-using collectCore.Services;
-using collectCore.Interfaces;
 using collectCoreBLL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
-builder.Services.AddScoped<IUserRepo, UserRepo>();
-builder.Services.AddScoped<UserService>();
 
 DepencyInjection.RegisterServices(builder.Services);
 

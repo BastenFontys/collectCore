@@ -1,4 +1,5 @@
-﻿using collectCoreBLL.Services;
+﻿using collectCoreBLL.Mappers;
+using collectCoreBLL.Services;
 using collectCoreDAL.Interfaces;
 using collectCoreDAL.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,11 +15,18 @@ namespace collectCoreBLL
     {
         public static void RegisterServices(IServiceCollection services)
         {
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<UserService>();
+
             services.AddScoped<ICollectionRepo, CollectionRepo>();
             services.AddScoped<CollectionService>();
 
             services.AddScoped<IItemRepo, ItemRepo>();
             services.AddScoped<ItemService>();
+
+            services.AddScoped<UserMapper>();
+            services.AddScoped<CollectionMapper>();
+            services.AddScoped<ItemMapper>();
         }
     }
 }

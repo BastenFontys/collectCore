@@ -15,9 +15,10 @@ namespace collectCoreBLL.Services
         private readonly ICollectionRepo _collectionRepo;
         private CollectionMapper _collectionMapper;
 
-        public CollectionService(ICollectionRepo collectionRepo)
+        public CollectionService(ICollectionRepo collectionRepo, CollectionMapper collectionMapper)
         {
             _collectionRepo = collectionRepo;
+            _collectionMapper = collectionMapper;
         }
 
         public async Task<List<Collection>> GetCollectionsByUserID(int userID)

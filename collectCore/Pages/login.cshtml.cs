@@ -1,5 +1,5 @@
-using collectCore.Services;
-using collectCore.Models;
+using collectCoreBLL.Services;
+using collectCoreBLL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
