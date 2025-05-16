@@ -1,4 +1,6 @@
-﻿namespace collectCore.Models
+﻿using collectCoreBLL.Models;
+
+namespace collectCore.Models
 {
     public class Wishlist
     {
@@ -13,15 +15,6 @@
             }
         }
 
-        private List<Item> content;
-
-        public List<Item> Content
-        {
-            get { return content; }
-            set
-            {
-                content = value;
-            }
-        }
+        public List<Item> Content { get; set; }
     }
 }

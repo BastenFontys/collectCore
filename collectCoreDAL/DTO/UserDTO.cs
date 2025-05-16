@@ -1,6 +1,12 @@
-﻿namespace collectCore.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace collectCoreDAL.DTO
 {
-    public class User
+    public class UserDTO
     {
         public int UserID { get; set; }
 

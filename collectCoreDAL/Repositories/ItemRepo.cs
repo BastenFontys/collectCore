@@ -1,8 +1,14 @@
-﻿using Microsoft.Data.SqlClient;
-using collectCore.Models;
-using collectCore.Interfaces;
+﻿using collectCoreDAL.Interfaces;
+using collectCoreDAL.DTO;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace collectCore.Repos
+namespace collectCoreDAL.Repositories
 {
     public class ItemRepo : IItemRepo
     {
@@ -13,9 +19,9 @@ namespace collectCore.Repos
             _connectionString = config.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<List<Item>> GetAllItems()
+        public async Task<List<ItemDTO>> GetAllItems()
         {
-            List<Item> items = new List<Item>();
+            List<ItemDTO> items = new List<ItemDTO>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -29,7 +35,7 @@ namespace collectCore.Repos
                         {
                             while (reader.Read())
                             {
-                                Item item = new Item
+                                ItemDTO item = new ItemDTO
                                 {
                                     ItemID = (int)reader["Item_ID"],
                                     Name = reader["Name"].ToString(),
@@ -50,9 +56,9 @@ namespace collectCore.Repos
             }
         }
 
-        public async Task<List<Item>> GetItemsByCollectionID(int collectionID)
+        public async Task<List<ItemDTO>> GetItemsByCollectionID(int collectionID)
         {
-            List<Item> items = new List<Item>();
+            List<ItemDTO> items = new List<ItemDTO>();
             List<int> itemIDs = new List<int>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -87,7 +93,7 @@ namespace collectCore.Repos
                                 {
                                     if (itemReader.Read())
                                     {
-                                        Item item = new Item
+                                        ItemDTO item = new ItemDTO
                                         {
                                             ItemID = (int)itemReader["Item_ID"],
                                             Name = itemReader["Name"].ToString(),

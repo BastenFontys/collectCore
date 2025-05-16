@@ -1,8 +1,14 @@
-﻿using Microsoft.Data.SqlClient;
-using collectCore.Models;
-using collectCore.Interfaces;
+﻿using collectCoreDAL.Interfaces;
+using collectCoreDAL.DTO;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace collectCore.Repos
+namespace collectCoreDAL.Repositories
 {
     public class UserRepo : IUserRepo
     {
@@ -14,7 +20,7 @@ namespace collectCore.Repos
         }
 
 
-        public async Task<User> GetByIdAsync(int id)
+        public async Task<UserDTO> GetByIdAsync(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -29,7 +35,7 @@ namespace collectCore.Repos
                         {
                             if (reader.Read())
                             {
-                                return new User
+                                return new UserDTO
                                 {
                                     UserID = (int)reader["User_ID"],
                                     Username = reader["Username"].ToString(),
@@ -57,7 +63,7 @@ namespace collectCore.Repos
         }
 
 
-        public async Task<User> GetByCredentialsAsync(string email, string password)
+        public async Task<UserDTO> GetByCredentialsAsync(string email, string password)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -73,7 +79,7 @@ namespace collectCore.Repos
                         {
                             if (reader.Read())
                             {
-                                return new User
+                                return new UserDTO
                                 {
                                     UserID = (int)reader["User_ID"],
                                     Username = reader["Username"].ToString(),
@@ -100,7 +106,7 @@ namespace collectCore.Repos
             }
         }
 
-        public async Task<User> CreateUser(string username, string email, string password, string? adress_street, int adress_number)
+        public async Task<UserDTO> CreateUser(string username, string email, string password, string? adress_street, int adress_number)
         {
             int NewUserID;
             try

@@ -1,8 +1,9 @@
-﻿using collectCore.Interfaces;
-using collectCore.Models;
+﻿using collectCoreDAL.DTO;
+using collectCoreDAL.Interfaces;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
-namespace collectCore.Repos
+namespace collectCoreDAL.Repositories
 {
     public class CollectionRepo : ICollectionRepo
     {
@@ -14,9 +15,9 @@ namespace collectCore.Repos
         }
 
 
-        public async Task<List<Collection>> GetCollectionsByUserID(int userID)
+        public async Task<List<CollectionDTO>> GetCollectionsByUserID(int userID)
         {
-            List<Collection> collections = new List<Collection>();
+            List<CollectionDTO> collections = new List<CollectionDTO>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -31,7 +32,7 @@ namespace collectCore.Repos
                         {
                             while (reader.Read())
                             {
-                                Collection collection = new Collection
+                                CollectionDTO collection = new CollectionDTO
                                 {
                                     CollectionID = (int)reader["Collection_ID"],
                                     Name = reader["Name"].ToString()
@@ -47,7 +48,7 @@ namespace collectCore.Repos
                             {
                                 return null;
                             }
-                                 
+
                         }
                     }
                     catch (Exception ex)
@@ -61,7 +62,7 @@ namespace collectCore.Repos
         }
 
 
-        public async Task<Collection> GetCollectionByID(int id)
+        public async Task<CollectionDTO> GetCollectionByID(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -76,7 +77,7 @@ namespace collectCore.Repos
                         {
                             if (reader.Read())
                             {
-                                return new Collection
+                                return new CollectionDTO
                                 {
                                     CollectionID = (int)reader["Collection_ID"],
                                     Name = reader["Name"].ToString()
@@ -99,7 +100,7 @@ namespace collectCore.Repos
         }
 
 
-        public async Task<Collection> CreateCollection(int userID, string name)
+        public async Task<CollectionDTO> CreateCollection(int userID, string name)
         {
             int NewCollectionID;
             try
