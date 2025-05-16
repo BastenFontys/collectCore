@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace collectCoreDAL.DTO
 {
-    class ItemDTO
+    public class ItemDTO
     {
         public int ItemID { get; set; }
 

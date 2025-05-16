@@ -1,6 +1,7 @@
 using collectCore.Repos;
 using collectCore.Services;
 using collectCore.Interfaces;
+using collectCoreBLL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<UserService>();
 
-builder.Services.AddScoped<ICollectionRepo, CollectionRepo>();
-builder.Services.AddScoped<CollectionService>();
-
-builder.Services.AddScoped<IItemRepo, ItemRepo>();
-builder.Services.AddScoped<ItemService>();
+DepencyInjection.RegisterServices(builder.Services);
 
 var app = builder.Build();
 
