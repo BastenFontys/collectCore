@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace collectCoreBLL
+namespace collectCore
 {
     public static class DepencyInjection
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<UserService>();
