@@ -26,7 +26,7 @@ namespace collectCore.Pages
                 return RedirectToPage("/Login");
             }
 
-            var data = await _pricetrendService.GetPriceTrend(3);
+            var data = await _pricetrendService.GetPriceTrend(3, range);
             if (data == null)
             {
                 return NotFound();

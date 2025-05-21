@@ -17,9 +17,33 @@ namespace collectCoreBLL.Services
             _pricetrendRepo = pricetrendRepo;
         }
 
-        public async Task<List<float>> GetPriceTrend(int collectionID)
+        public async Task<List<float>> GetPriceTrend(int collectionID, string range)
         {
-            return await _pricetrendRepo.GetPriceTrend(collectionID);
+            if (range == "1Y")
+            {
+                return await _pricetrendRepo.GetPriceTrend1Y(collectionID);
+            }
+            else if(range == "6M")
+            {
+                return await _pricetrendRepo.GetPriceTrend6M(collectionID);
+            }
+            else if (range == "3M")
+            {
+                return await _pricetrendRepo.GetPriceTrend3M(collectionID);
+            }
+            else if (range == "1M")
+            {
+                return await _pricetrendRepo.GetPriceTrend1M(collectionID);
+            }
+            else if (range == "1W")
+            {
+                return await _pricetrendRepo.GetPriceTrend1W(collectionID);
+            }
+            else
+            {
+                return await _pricetrendRepo.GetPriceTrend1M(collectionID);
+            }
+
         }
 
         public List<string> GetLabels(string range)
