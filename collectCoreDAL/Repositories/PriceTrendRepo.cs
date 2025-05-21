@@ -30,13 +30,13 @@ namespace collectCoreDAL.Repositories
                 using (SqlCommand command = new SqlCommand(
                     "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Collection_price_history] " +
-                    "WHERE Collection_ID = 3 AND Date_recorded >= DATEADD(MONTH, -11, GETDATE()) " +
+                    "WHERE Collection_ID = @collectionID AND Date_recorded >= DATEADD(MONTH, -11, GETDATE()) " +
                     "AND Date_recorded < GETDATE() " +
                     "GROUP BY YEAR(Date_recorded), MONTH(Date_recorded) " +
                     "ORDER BY YEAR(Date_recorded), MONTH(Date_recorded)", 
                     connection))
                 {
-                    //command.Parameters.AddWithValue("@collectionID", collectionID);
+                    command.Parameters.AddWithValue("@collectionID", collectionID);
                     try
                     {
                         connection.Open();
@@ -70,13 +70,13 @@ namespace collectCoreDAL.Repositories
                 using (SqlCommand command = new SqlCommand(
                     "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Collection_price_history] " +
-                    "WHERE Collection_ID = 3 AND Date_recorded >= DATEADD(MONTH, -5, GETDATE()) " +
+                    "WHERE Collection_ID = @collectionID AND Date_recorded >= DATEADD(MONTH, -5, GETDATE()) " +
                     "AND Date_recorded < GETDATE() " +
                     "GROUP BY YEAR(Date_recorded), MONTH(Date_recorded) " +
                     "ORDER BY YEAR(Date_recorded), MONTH(Date_recorded)",
                     connection))
                 {
-                    //command.Parameters.AddWithValue("@collectionID", collectionID);
+                    command.Parameters.AddWithValue("@collectionID", collectionID);
                     try
                     {
                         connection.Open();
@@ -110,13 +110,13 @@ namespace collectCoreDAL.Repositories
                 using (SqlCommand command = new SqlCommand(
                     "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Collection_price_history] " +
-                    "WHERE Collection_ID = 3 AND Date_recorded >= DATEADD(MONTH, -2, GETDATE()) " +
+                    "WHERE Collection_ID = @collectionID AND Date_recorded >= DATEADD(MONTH, -2, GETDATE()) " +
                     "AND Date_recorded < GETDATE() " +
                     "GROUP BY YEAR(Date_recorded), MONTH(Date_recorded) " +
                     "ORDER BY YEAR(Date_recorded), MONTH(Date_recorded)",
                     connection))
                 {
-                    //command.Parameters.AddWithValue("@collectionID", collectionID);
+                    command.Parameters.AddWithValue("@collectionID", collectionID);
                     try
                     {
                         connection.Open();
@@ -150,13 +150,13 @@ namespace collectCoreDAL.Repositories
                 using (SqlCommand command = new SqlCommand(
                     "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM[CoreC].[dbo].[Collection_price_history] " +
-                    "WHERE Collection_ID = 3 " +
+                    "WHERE Collection_ID = @collectionID " +
                     "AND Date_recorded >= DATEADD(WEEK, -3, GETDATE()) AND Date_recorded < GETDATE() " +
                     "GROUP BY DATEPART(YEAR, Date_recorded), DATEPART(WEEK, Date_recorded) " +
                     "ORDER BY DATEPART(YEAR, Date_recorded), DATEPART(WEEK, Date_recorded);",
                     connection))
                 {
-                    //command.Parameters.AddWithValue("@collectionID", collectionID);
+                    command.Parameters.AddWithValue("@collectionID", collectionID);
                     try
                     {
                         connection.Open();
@@ -190,13 +190,13 @@ namespace collectCoreDAL.Repositories
                 using (SqlCommand command = new SqlCommand(
                     "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Collection_price_history] " +
-                    "WHERE Collection_ID = 3 " +
+                    "WHERE Collection_ID = @collectionID " +
                     "AND Date_recorded >= DATEADD(DAY, -7, CAST(GETDATE() AS DATE)) AND Date_recorded < CAST(GETDATE() AS DATE) " +
                     "GROUP BY CAST(Date_recorded AS DATE) " +
                     "ORDER BY CAST(Date_recorded AS DATE);",
                     connection))
                 {
-                    //command.Parameters.AddWithValue("@collectionID", collectionID);
+                    command.Parameters.AddWithValue("@collectionID", collectionID);
                     try
                     {
                         connection.Open();
