@@ -1,3 +1,4 @@
+using collectCoreBLL.Models;
 using collectCoreBLL.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,20 +9,12 @@ namespace collectCore.Pages
     {
         private readonly PriceTrendService _pricetrendService;
 
-        public profileModel(UserService userService)
+        public dashboardModel(PriceTrendService pricetrendService)
         {
-            _userService = userService;
+            _pricetrendService = pricetrendService;
         }
 
-
-
-
-
         public List<float> Data { get; set; }
-
-
-
-
 
 
         public async Task<IActionResult> OnGet()
@@ -32,7 +25,14 @@ namespace collectCore.Pages
                 return RedirectToPage("/Login");
             }
 
-            var data = await 
+            var data = await _pricetrendService.GetPriceTrend(3);
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            Data = data;
+            return Page();
         }
     }
 }

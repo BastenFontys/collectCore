@@ -28,7 +28,7 @@ namespace collectCoreDAL.Repositories
                 using (SqlCommand command = new SqlCommand(
                     "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Collection_price_history] " +
-                    "WHERE Collection_ID = 3 AND Date_recorded >= DATEADD(MONTH, -11, GETDATE()) " +
+                    "WHERE Collection_ID = 2 AND Date_recorded >= DATEADD(MONTH, -11, GETDATE()) " +
                     "AND Date_recorded < GETDATE() " +
                     "GROUP BY YEAR(Date_recorded), MONTH(Date_recorded) " +
                     "ORDER BY YEAR(Date_recorded), MONTH(Date_recorded)", 
