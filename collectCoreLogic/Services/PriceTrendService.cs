@@ -21,5 +21,64 @@ namespace collectCoreBLL.Services
         {
             return await _pricetrendRepo.GetPriceTrend(collectionID);
         }
+
+        public List<string> GetLabels(string range)
+        {
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            var labels = new List<string>();
+
+            switch (range)
+            {
+                case "1W":
+                    for (int i = 6; i >= 0; i--)
+                    {
+                        var day = today.AddDays(-i);
+                        labels.Add(day.ToString("ddd"));
+                    }
+                    break;
+
+                case "1M":
+                    for (int i = 3; i >= 0; i--)
+                    {
+                        var week = today.AddDays(-7 * i);
+                        labels.Add(week.ToString("MMM dd"));
+                    }
+                    break;
+
+                case "3M":
+                    for (int i = 2; i >= 0; i--)
+                    {
+                        var month = today.AddMonths(-i);
+                        labels.Add(month.ToString("MMM"));
+                    }
+                    break;
+
+                case "6M":
+                    for (int i = 5; i >= 0; i--)
+                    {
+                        var month = today.AddMonths(-i);
+                        labels.Add(month.ToString("MMM"));
+                    }
+                    break;
+
+                case "1Y":
+                    for (int i = 11; i >= 0; i--)
+                    {
+                        var month = today.AddMonths(-i);
+                        labels.Add(month.ToString("MMM"));
+                    }
+                    break;
+
+                default:
+                    for (int i = 3; i >= 0; i--)
+                    {
+                        var week = today.AddDays(-7 * i);
+                        labels.Add(week.ToString("MMM dd"));
+                    }
+                    break;
+            }
+
+            return labels;
+        }
     }
 }

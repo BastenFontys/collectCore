@@ -15,9 +15,10 @@ namespace collectCore.Pages
         }
 
         public List<float> Data { get; set; }
+        public List<string> Labels { get; set; }
 
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(string range = "1M")
         {
             var cookie = Request.Cookies["auth_user"];
             if (cookie == null)
@@ -31,6 +32,7 @@ namespace collectCore.Pages
                 return NotFound();
             }
 
+            Labels = _pricetrendService.GetLabels(range);
             Data = data;
             return Page();
         }

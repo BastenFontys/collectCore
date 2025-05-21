@@ -17,11 +17,11 @@
         <div id="graphdiv">
             <canvas id="myChart"></canvas>
             <div>
-                <a href="#">1W</a>
-                <a href="#">1M</a>
-                <a href="#">3M</a>
-                <a href="#">6M</a>
-                <a href="#">1Y</a>
+                <a asp-page="./dashboard" asp-route-range="1W">1W</a>
+                <a asp-page="./dashboard" asp-route-range="1M">1M</a>
+                <a asp-page="./dashboard" asp-route-range="3M">3M</a>
+                <a asp-page="./dashboard" asp-route-range="6M">6M</a>
+                <a asp-page="./dashboard" asp-route-range="1Y">1Y</a>
             </div>
         </div>
     </section>
@@ -54,13 +54,14 @@
 {
     <script>
         const DATA = @Html.Raw(Json.Serialize(Model.Data));
+        const LABELS = @Html.Raw(Json.Serialize(Model.Labels));
 
         const CONTEXT = document.getElementById('myChart').getContext('2d');
         new Chart(CONTEXT,
         {
             type: 'line', data:
             {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'Juli', 'August', 'September', 'Oktober', 'November', 'December'],
+                labels: LABELS,
                 datasets:
                 [{
                     label: 'Collection Growth',
