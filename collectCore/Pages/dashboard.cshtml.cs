@@ -25,15 +25,13 @@ namespace collectCore.Pages
         public List<Collection> Collections { get; set; }
 
 
-        public async Task<IActionResult> OnGet(int collectionID = 1, string range = "1M")
+        public async Task<IActionResult> OnGet(int? collectionID, string range = "1M")
         {
             var cookie = Request.Cookies["auth_user"];
             if (cookie == null)
             {
                 return RedirectToPage("/Login");
             }
-
-            CollectionID = collectionID;
 
             int userid = int.Parse(cookie);
 
@@ -44,6 +42,16 @@ namespace collectCore.Pages
             }
 
             Collections = collections;
+
+
+            if (collectionID.HasValue)
+            {
+                CollectionID = collectionID.Value;
+            }
+            else
+            {
+                CollectionID = Collections.First().CollectionID;
+            }
 
             var data = await _pricetrendService.GetPriceTrend(CollectionID, range);
             if (data == null)
