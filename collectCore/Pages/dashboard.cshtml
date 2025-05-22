@@ -12,16 +12,25 @@
         </div>
         <div>
             <p>Collection:</p>
-            <a href="#">My collection</a>
+            <form method="get">
+                <select name="collectionID" onchange="this.form.submit()">
+                    @foreach (var collection in Model.Collections)
+                    {
+                        <option value="@collection.CollectionID" selected="@(collection.CollectionID == Model.CollectionID)">
+                            @collection.Name
+                        </option>
+                    }
+                </select>
+            </form>
         </div>
         <div id="graphdiv">
             <canvas id="myChart"></canvas>
             <div>
-                <a href="#">1W</a>
-                <a href="#">1M</a>
-                <a href="#">3M</a>
-                <a href="#">6M</a>
-                <a href="#">1Y</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="1W">1W</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="1M">1M</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="3M">3M</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="6M">6M</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="1Y">1Y</a>
             </div>
         </div>
     </section>
@@ -50,3 +59,41 @@
         </div>
     </section>
 </div>
+@section Scripts
+{
+    <script>
+        const DATA = @Html.Raw(Json.Serialize(Model.Data));
+        const LABELS = @Html.Raw(Json.Serialize(Model.Labels));
+
+        const CONTEXT = document.getElementById('myChart').getContext('2d');
+        new Chart(CONTEXT,
+        {
+            type: 'line', data:
+            {
+                labels: LABELS,
+                datasets:
+                [{
+                    label: 'Collection Growth',
+                    data: DATA,
+                    borderColor: 'rgba(181, 178, 0, 1)',
+                    backgroundColor: 'rgba(235, 233, 70, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options:
+            {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales:
+                {
+                    y:
+                    {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+}
+    
