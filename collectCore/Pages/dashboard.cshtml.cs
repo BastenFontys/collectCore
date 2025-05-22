@@ -8,10 +8,12 @@ namespace collectCore.Pages
     public class dashboardModel : PageModel
     {
         private readonly PriceTrendService _pricetrendService;
+        private readonly CollectionService _collectionService;
 
-        public dashboardModel(PriceTrendService pricetrendService)
+        public dashboardModel(PriceTrendService pricetrendService, CollectionService collectionService)
         {
             _pricetrendService = pricetrendService;
+            _collectionService = collectionService;
         }
 
         public List<float> Data { get; set; }
@@ -33,12 +35,15 @@ namespace collectCore.Pages
 
             CollectionID = collectionID;
 
-            Collections = new List<Collection>
+            int userid = int.Parse(cookie);
+
+            var collections = await _collectionService.GetCollectionsByUserID(userid);
+            if (collections == null)
             {
-                new Collection { CollectionID = 1, Name = "Collection 1" },
-                new Collection { CollectionID = 2, Name = "Collection 2" },
-                new Collection { CollectionID = 3, Name = "Collection 3" }
-            };
+                return NotFound();
+            }
+
+            Collections = collections;
 
             var data = await _pricetrendService.GetPriceTrend(CollectionID, range);
             if (data == null)
@@ -59,12 +64,15 @@ namespace collectCore.Pages
                 return RedirectToPage("/Login");
             }
 
-            Collections = new List<Collection>
+            int userid = int.Parse(cookie);
+
+            var collections = await _collectionService.GetCollectionsByUserID(userid);
+            if (collections == null)
             {
-                new Collection { CollectionID = 1, Name = "Collection 1" },
-                new Collection { CollectionID = 2, Name = "Collection 2" },
-                new Collection { CollectionID = 3, Name = "Collection 3" }
-            };
+                return NotFound();
+            }
+
+            Collections = collections;
 
             var data = await _pricetrendService.GetPriceTrend(CollectionID, "1M");
             if (data == null)
