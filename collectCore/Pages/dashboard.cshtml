@@ -12,16 +12,25 @@
         </div>
         <div>
             <p>Collection:</p>
-            <a href="#">My collection</a>
+            <form method="get">
+                <select name="collectionID" onchange="this.form.submit()">
+                    @foreach (var collection in Model.Collections)
+                    {
+                        <option value="@collection.CollectionID" selected="@(collection.CollectionID == Model.CollectionID)">
+                            @collection.Name
+                        </option>
+                    }
+                </select>
+            </form>
         </div>
         <div id="graphdiv">
             <canvas id="myChart"></canvas>
             <div>
-                <a asp-page="./dashboard" asp-route-range="1W">1W</a>
-                <a asp-page="./dashboard" asp-route-range="1M">1M</a>
-                <a asp-page="./dashboard" asp-route-range="3M">3M</a>
-                <a asp-page="./dashboard" asp-route-range="6M">6M</a>
-                <a asp-page="./dashboard" asp-route-range="1Y">1Y</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="1W">1W</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="1M">1M</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="3M">3M</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="6M">6M</a>
+                <a asp-page="./dashboard" asp-route-collectionID="@Model.CollectionID" asp-route-range="1Y">1Y</a>
             </div>
         </div>
     </section>
