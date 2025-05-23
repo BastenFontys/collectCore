@@ -8,14 +8,19 @@ namespace collectCore.Pages
     public class profileModel : PageModel
     {
         private readonly UserService _userService;
+        private readonly PostService _postService;
 
-        public profileModel(UserService userService)
+        public profileModel(UserService userService, PostService postService)
         {
             _userService = userService;
+            _postService = postService;
         }
 
         [BindProperty]
         public User User { get; set; }
+
+        [BindProperty]
+        public List<Post> Posts { get; set; }
 
 
         public async Task<IActionResult> OnGet()
@@ -35,6 +40,15 @@ namespace collectCore.Pages
             }
 
             User = user;
+
+            var posts = await _postService.GetAllPostsByUserID(id);
+            if (posts == null)
+            {
+                return NotFound();
+            }
+
+            Posts = posts;
+
             return Page();
         }
     }
