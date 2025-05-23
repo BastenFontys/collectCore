@@ -4,6 +4,7 @@
     Layout = "_Layout";
     ViewData["Title"] = "Profile Page";
 }
+@using collectCoreBLL.Models;
 
 <div>
     <section id="profile">
@@ -48,7 +49,7 @@
         <hr>
         <div>
             @{
-                for (int i = 0; i < 9; i++)
+                foreach (Post post in Model.Posts)
                 {
                     <img src="Foto_empty.jpg" alt="no image">
                 }
