@@ -19,6 +19,7 @@ namespace collectCoreDAL.Repositories
             _connectionString = config.GetConnectionString("DefaultConnection");
         }
 
+
         public async Task<List<PostDTO>> GetAllPostsByUserID(int userID)
         {
             List<PostDTO> posts = new List<PostDTO>();
@@ -65,6 +66,33 @@ namespace collectCoreDAL.Repositories
                         return null;
                     }
                 }
+            }
+        }
+
+
+        public async void CreatePost(int userID, PostDTO post)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO [CoreC].[dbo].[Post] (User_ID, Post_image, ImageType, Caption, Date_posted) VALUES (@userID, @postImage, @imageType, @caption, @datePosted);", connection))
+                    {
+                        command.Parameters.AddWithValue("@userID", userID);
+                        command.Parameters.AddWithValue("@postImage", post.ImageData);
+                        command.Parameters.AddWithValue("@imageType", post.MimeType);
+                        command.Parameters.AddWithValue("@caption", post.Caption ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@datePosted", post.DatePosted);
+
+                        await command.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("stackTrace: " + ex.StackTrace);
             }
         }
     }

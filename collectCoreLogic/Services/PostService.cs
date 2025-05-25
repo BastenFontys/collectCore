@@ -27,6 +27,11 @@ namespace collectCoreBLL.Services
             List<Post> modelList = new List<Post>();
             var dtoList = await _postRepo.GetAllPostsByUserID(userID);
 
+            if (dtoList == null)
+            {
+                return null;
+            }
+
             foreach (PostDTO dto in dtoList)
             {
                 modelList.Add(_postMapper.ToModel(dto));

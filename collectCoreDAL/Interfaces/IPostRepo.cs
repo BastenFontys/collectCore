@@ -10,5 +10,7 @@ namespace collectCoreDAL.Interfaces
     public interface IPostRepo
     {
         Task<List<PostDTO>> GetAllPostsByUserID(int userID);
+
+        void CreatePost(int userID, PostDTO post);
     }
 }

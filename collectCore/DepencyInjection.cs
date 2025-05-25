@@ -27,9 +27,15 @@ namespace collectCore
             services.AddScoped<IPricetrendRepo, PriceTrendRepo>();
             services.AddScoped<PriceTrendService>();
 
+            services.AddScoped<IPostRepo, PostRepo>();
+            services.AddScoped<PostService>();
+
+
+
             services.AddScoped<UserMapper>();
             services.AddScoped<CollectionMapper>();
             services.AddScoped<ItemMapper>();
+            services.AddScoped<PostMapper>();
         }
     }
 }

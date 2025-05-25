@@ -49,9 +49,12 @@
         <hr>
         <div>
             @{
-                foreach (Post post in Model.Posts)
+                if (Model.Posts != null)
                 {
-                    <img src="Foto_empty.jpg" alt="no image">
+                    foreach (Post post in Model.Posts)
+                    {
+                        <img src="Foto_empty.jpg" alt="no image">
+                    }
                 }
             }
         </div>

@@ -23,6 +23,7 @@ namespace collectCore.Pages
         public List<Post> Posts { get; set; }
 
 
+
         public async Task<IActionResult> OnGet()
         {
             var cookie = Request.Cookies["auth_user"];
@@ -44,7 +45,7 @@ namespace collectCore.Pages
             var posts = await _postService.GetAllPostsByUserID(id);
             if (posts == null)
             {
-                return NotFound();
+                return Page();
             }
 
             Posts = posts;
