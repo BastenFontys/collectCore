@@ -43,7 +43,7 @@ namespace collectCoreDAL.Repositories
                                     ImageData = (byte[])reader["Post_image"],
                                     MimeType = reader["ImageType"].ToString(),
                                     Caption = reader["Caption"].ToString(),
-                                    DatePosted = (DateOnly)reader["Date_posted"]
+                                    DatePosted = DateOnly.FromDateTime((DateTime)reader["Date_posted"])
                                 };
 
                                 posts.Add(post);
