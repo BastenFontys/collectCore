@@ -26,6 +26,7 @@ namespace collectCoreBLL.Services
         {
             List<Item> modelList = new List<Item>();
             var dtoList = await _itemRepo.GetAllItems();
+
             foreach (ItemDTO dto in dtoList)
             {
                 modelList.Add(_itemMapper.ToModel(dto));
@@ -37,6 +38,12 @@ namespace collectCoreBLL.Services
         {
             List<Item> modelList = new List<Item>();
             var dtoList = await _itemRepo.GetItemsByCollectionID(collectionID);
+
+            if (dtoList == null)
+            {
+                return null;
+            }
+
             foreach (ItemDTO dto in dtoList)
             {
                 modelList.Add(_itemMapper.ToModel(dto));
