@@ -4,6 +4,7 @@
     Layout = "_Layout";
     ViewData["Title"] = "Profile Page";
 }
+@using collectCoreBLL.Models;
 
 <div>
     <section id="profile">
@@ -48,9 +49,14 @@
         <hr>
         <div>
             @{
-                for (int i = 0; i < 9; i++)
+                if (Model.Posts != null)
                 {
-                    <img src="Foto_empty.jpg" alt="no image">
+                    foreach (Post post in Model.Posts)
+                    {
+                        var base64 = Convert.ToBase64String(post.ImageData);
+                        var imageSrc = $"data:{post.MimeType};base64,{base64}";
+                        <img src="@imageSrc" alt="image"/>
+                    }
                 }
             }
         </div>

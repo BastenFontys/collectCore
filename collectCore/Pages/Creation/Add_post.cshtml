@@ -1,0 +1,13 @@
+﻿@page
+@model collectCore.Pages.Creation.Add_postModel
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Add post";
+}
+
+<div>
+	<form method="post" enctype="multipart/form-data">
+		<input type="file" name="ImageFile" />
+		<button type="submit">Upload</button>
+	</form>
+</div>
