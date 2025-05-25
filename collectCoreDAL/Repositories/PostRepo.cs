@@ -83,7 +83,7 @@ namespace collectCoreDAL.Repositories
                         command.Parameters.AddWithValue("@postImage", post.ImageData);
                         command.Parameters.AddWithValue("@imageType", post.MimeType);
                         command.Parameters.AddWithValue("@caption", post.Caption ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@datePosted", post.DatePosted);
+                        command.Parameters.AddWithValue("@datePosted", DateOnly.FromDateTime(DateTime.Now));
 
                         await command.ExecuteNonQueryAsync();
                     }

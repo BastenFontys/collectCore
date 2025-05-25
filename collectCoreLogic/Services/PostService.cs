@@ -38,5 +38,11 @@ namespace collectCoreBLL.Services
             }
             return modelList;
         }
+
+        public async void CreatePost(int userID, Post post)
+        {
+            PostDTO postDTO = _postMapper.ToDTO(post);
+            _postRepo.CreatePost(userID, postDTO);
+        }
     }
 }
