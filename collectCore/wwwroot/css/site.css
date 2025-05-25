@@ -33,7 +33,7 @@ section#sidebar > img {
     width: 50%;
 }
 
-section#sidebar > button {
+section#sidebar > a > button {
     margin-top: 35px;
     color: white;
     font-family: 'arial black';
@@ -44,7 +44,7 @@ section#sidebar > button {
     border: 0px;
 }
 
-section#sidebar > button:hover {
+section#sidebar > a > button:hover {
     background-color: rgba(136, 29, 166, 1);
 }
 
