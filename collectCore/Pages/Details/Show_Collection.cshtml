@@ -15,16 +15,19 @@
         </button>
         <div>
             @{
-                foreach (collectCoreBLL.Models.Item item in Model.Items)
+                if (Model.Items != null)
                 {
-                    <div>
-                        <p>@item.Name</p>
-                        <p>€@item.ItemValue</p>
-                        <form method="post">
-                            <input type="hidden" name="itemID" value="@item.ItemID" />
-                            <button type="submit">Delete</button>
-                        </form>
-                    </div>
+                    foreach (collectCoreBLL.Models.Item item in Model.Items)
+                    {
+                        <div>
+                            <p>@item.Name</p>
+                            <p>€@item.ItemValue</p>
+                            <form method="post">
+                                <input type="hidden" name="itemID" value="@item.ItemID" />
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    }
                 }
             }
         </div>
