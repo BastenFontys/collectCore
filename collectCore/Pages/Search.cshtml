@@ -1,0 +1,29 @@
+﻿@page
+@model collectCore.Pages.SearchModel
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Search";
+}
+
+<div>
+    <section id="search">
+        <h1>Search Results for "@Model.Query"</h1>
+
+        @if (Model.Items != null)
+        {
+            <div>
+                @foreach (var item in Model.Items)
+                {
+                    <div>
+                        <p>@item.Name</p>
+                        <p>€@item.ItemValue</p>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No results found.</p>
+        }
+    </section>
+</div>

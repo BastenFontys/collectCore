@@ -48,7 +48,7 @@ section#sidebar > a > button:hover {
     background-color: rgba(136, 29, 166, 1);
 }
 
-section#sidebar > input[type=text] {
+section#sidebar > form > input[type=text] {
     padding: 10px 15px;
     margin-top: 15px;
     border: none;
@@ -167,9 +167,13 @@ section#feed > hr {
 
 section#feed > div {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     background-color: white;
+    justify-content: flex-start;
+    gap: 2.1rem;
+    padding: 0 2.1rem;
+    box-sizing: border-box;
 }
 
 section#feed > div > img {
@@ -310,8 +314,11 @@ section#collections > hr {
 section#collections > div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     background-color: white;
+    justify-content: flex-start;
+    gap: 2.1rem;
+    padding: 0 2.1rem;
+    box-sizing: border-box;
 }
 
 section#collections > button {
@@ -384,12 +391,15 @@ section#collectionsShow > hr {
     margin-left: 100px;
 }
 
-section#collectionsShow > div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    background-color: white;
-}
+    section#collectionsShow > div {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: white;
+        justify-content: flex-start;
+        gap: 1.1rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+    }
 
 section#collectionsShow > button {
     margin-top: 20px;
@@ -434,4 +444,46 @@ section#collectionsShow > div > div > button > a {
 
 section#collectionsShow > form {
     margin-left: 100px;
+}
+
+
+
+/*
+    Collection section voor search
+*/
+
+
+
+section#search {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 50px;
+    font-family: 'arial black';
+}
+
+section#search > h1 {
+    margin-left: 100px;
+}
+
+section#search > div {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    justify-content: flex-start;
+    gap: 1.1rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+section#search > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    background-color: grey;
+    width: 15vw;
+    height: 25vw;
 }
