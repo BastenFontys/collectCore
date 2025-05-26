@@ -175,6 +175,9 @@ section#feed > div {
 section#feed > div > img {
     padding-top: 2%;
     padding-bottom: 1%;
+    height: 380px;
+    width: 380px;
+    object-fit: cover;
 }
 
 
