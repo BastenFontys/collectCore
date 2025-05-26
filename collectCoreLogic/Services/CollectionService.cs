@@ -55,9 +55,9 @@ namespace collectCoreBLL.Services
             _collectionRepo.AddItemToCollection(id, itemid);
         }
 
-        public void DeleteItemFromCollection(int id, int itemid)
+        public void DeleteItemFromCollection(int collectionItemID)
         {
-            _collectionRepo.DeleteItemFromCollection(id, itemid);
+            _collectionRepo.DeleteItemFromCollection(collectionItemID);
         }
     }
 }

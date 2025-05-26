@@ -64,7 +64,11 @@ namespace collectCoreDAL.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
 
-                using (SqlCommand command = new SqlCommand("SELECT Item_ID FROM [CoreC].[dbo].[Collection_item] WHERE Collection_ID = @collectionID;", connection))
+                using (SqlCommand command = new SqlCommand
+                    ("SELECT ci.Collection_item_ID, i.Item_ID, i.Name, i.Value " +
+                    "FROM [CoreC].[dbo].[Collection_item] ci " +
+                    "JOIN [CoreC].[dbo].[Item] i ON ci.Item_ID = i.Item_ID " +
+                    "WHERE ci.Collection_ID = @collectionID;", connection))
                 {
                     command.Parameters.AddWithValue("@collectionID", collectionID);
                     try
@@ -74,34 +78,15 @@ namespace collectCoreDAL.Repositories
                         {
                             while (reader.Read())
                             {
-                                itemIDs.Add((int)reader["Item_ID"]);
-                            }
-                        }
-
-                        if (itemIDs.Count == 0)
-                        {
-                            return null;
-                        }
-
-                        foreach (int itemID in itemIDs)
-                        {
-                            using (SqlCommand itemCommand = new SqlCommand("SELECT Item_ID, Name, Value FROM [CoreC].[dbo].[Item] WHERE Item_ID = @itemID;", connection))
-                            {
-                                itemCommand.Parameters.AddWithValue("@itemID", itemID);
-
-                                using (SqlDataReader itemReader = itemCommand.ExecuteReader())
+                                ItemDTO item = new ItemDTO
                                 {
-                                    if (itemReader.Read())
-                                    {
-                                        ItemDTO item = new ItemDTO
-                                        {
-                                            ItemID = (int)itemReader["Item_ID"],
-                                            Name = itemReader["Name"].ToString(),
-                                            ItemValue = Convert.ToSingle(itemReader["Value"])
-                                        };
-                                        items.Add(item);
-                                    }
-                                }
+                                    CollectionItemID = (int)reader["Collection_item_ID"],
+                                    ItemID = (int)reader["Item_ID"],
+                                    Name = reader["Name"].ToString(),
+                                    ItemValue = Convert.ToSingle(reader["Value"])
+                                };
+
+                                items.Add(item);
                             }
                         }
 

@@ -174,7 +174,7 @@ namespace collectCoreDAL.Repositories
             }
         }
 
-        public void DeleteItemFromCollection(int id, int itemid)
+        public void DeleteItemFromCollection(int collectionItemId)
         {
             try
             {
@@ -182,10 +182,9 @@ namespace collectCoreDAL.Repositories
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("DELETE FROM [CoreC].[dbo].[Collection_item] WHERE Collection_ID = @id AND Item_ID = @itemID;", connection))
+                    using (SqlCommand command = new SqlCommand("DELETE FROM [CoreC].[dbo].[Collection_item] WHERE Collection_item_ID = @id", connection))
                     {
-                        command.Parameters.AddWithValue("@id", id);
-                        command.Parameters.AddWithValue("@itemID", itemid);
+                        command.Parameters.AddWithValue("@id", collectionItemId);
 
                         command.ExecuteNonQuery();
                     }
