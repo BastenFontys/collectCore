@@ -23,7 +23,7 @@ namespace collectCore.Pages.Details
         public List<Item> Items { get; set; }
 
         [BindProperty]
-        public int ItemID { get; set; }
+        public int CollectionItemID { get; set; }
 
 
         public async Task<IActionResult> OnGet(int collectionid)
@@ -61,7 +61,7 @@ namespace collectCore.Pages.Details
                 return RedirectToPage("/Login");
             }
 
-            _collectionService.DeleteItemFromCollection(Collection.CollectionID, ItemID);
+            _collectionService.DeleteItemFromCollection(CollectionItemID);
 
             return RedirectToPage("/collection");
         }

@@ -15,5 +15,7 @@ namespace collectCoreDAL.DTO
         public float ItemValue { get; set; }
 
         public int Category { get; set; }
+
+        public int? CollectionItemID { get; set; }
     }
 }

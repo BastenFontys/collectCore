@@ -16,7 +16,8 @@ namespace collectCoreBLL.Mappers
             {
                 ItemID = dto.ItemID,
                 Name = dto.Name,
-                ItemValue = dto.ItemValue
+                ItemValue = dto.ItemValue,
+                CollectionItemID = dto.CollectionItemID
             };
         }
 
@@ -26,7 +27,8 @@ namespace collectCoreBLL.Mappers
             {
                 ItemID = model.ItemID,
                 Name = model.Name,
-                ItemValue = model.ItemValue
+                ItemValue = model.ItemValue,
+                CollectionItemID = model.CollectionItemID
             };
         }
     }

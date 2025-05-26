@@ -19,6 +19,6 @@ namespace collectCoreDAL.Interfaces
 
         void AddItemToCollection(int id, int itemid);
 
-        void DeleteItemFromCollection(int id, int itemid);
+        void DeleteItemFromCollection(int collectionItemId);
     }
 }
