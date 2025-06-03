@@ -25,7 +25,7 @@ namespace collectCoreDAL.Repositories
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                using (SqlCommand command = new SqlCommand("SELECT Item_ID, Name, Value FROM [CoreC].[dbo].[Item];", connection))
+                using (SqlCommand command = new SqlCommand("SELECT Item_ID, Name FROM [CoreC].[dbo].[Item];", connection))
                 {
                     try
                     {
@@ -39,7 +39,7 @@ namespace collectCoreDAL.Repositories
                                 {
                                     ItemID = (int)reader["Item_ID"],
                                     Name = reader["Name"].ToString(),
-                                    ItemValue = Convert.ToSingle(reader["Value"])
+                                    ItemValue = await GetCurrentItemValue((int)reader["Item_ID"])
                                 };
                                 items.Add(item);
                             }
@@ -65,7 +65,7 @@ namespace collectCoreDAL.Repositories
             {
 
                 using (SqlCommand command = new SqlCommand
-                    ("SELECT ci.Collection_item_ID, i.Item_ID, i.Name, i.Value " +
+                    ("SELECT ci.Collection_item_ID, i.Item_ID, i.Name " +
                     "FROM [CoreC].[dbo].[Collection_item] ci " +
                     "JOIN [CoreC].[dbo].[Item] i ON ci.Item_ID = i.Item_ID " +
                     "WHERE ci.Collection_ID = @collectionID;", connection))
@@ -83,7 +83,7 @@ namespace collectCoreDAL.Repositories
                                     CollectionItemID = (int)reader["Collection_item_ID"],
                                     ItemID = (int)reader["Item_ID"],
                                     Name = reader["Name"].ToString(),
-                                    ItemValue = Convert.ToSingle(reader["Value"])
+                                    ItemValue = await GetCurrentItemValue((int)reader["Item_ID"])
                                 };
 
                                 items.Add(item);
@@ -91,6 +91,44 @@ namespace collectCoreDAL.Repositories
                         }
 
                         return items;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        Console.WriteLine("stackTrace: " + ex.StackTrace);
+                        return null;
+                    }
+                }
+            }
+        }
+
+
+        public async Task<float?> GetCurrentItemValue(int id)
+        {
+            List<ItemDTO> items = new List<ItemDTO>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(
+                    "SELECT Total_value " +
+                    "FROM [CoreC].[dbo].[Item_price_history] " +
+                    "WHERE Item_ID = @ItemID AND Date_recorded = CAST(GETDATE() AS DATE);", connection))
+                {
+                    command.Parameters.AddWithValue("@ItemID", id);
+                    try
+                    {
+                        connection.Open();
+
+                        var result = await command.ExecuteScalarAsync();
+
+                        if (result == null || result == DBNull.Value)
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            return Convert.ToSingle(result);
+                        }
                     }
                     catch (Exception ex)
                     {

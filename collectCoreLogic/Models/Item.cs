@@ -12,7 +12,7 @@ namespace collectCoreBLL.Models
 
         public string Name { get; set; }
 
-        public float ItemValue { get; set; }
+        public float? ItemValue { get; set; }
 
         public int Category { get; set; }
 
