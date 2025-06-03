@@ -28,7 +28,7 @@ namespace collectCoreDAL.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = new SqlCommand(
-                    "SELECT AVG(Total_value) AS Avg_Total_Value, " +
+                    "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Item_price_history] " +
                     "WHERE Item_ID = @itemID " +
                     "AND Date_recorded >= DATEADD(MONTH, -11, CAST(GETDATE() AS DATE)) " +
@@ -69,7 +69,7 @@ namespace collectCoreDAL.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = new SqlCommand(
-                    "SELECT AVG(Total_value) AS Avg_Total_Value, " +
+                    "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Item_price_history] " +
                     "WHERE Item_ID = @itemID " +
                     "AND Date_recorded >= DATEADD(MONTH, -5, CAST(GETDATE() AS DATE)) " +
@@ -110,7 +110,7 @@ namespace collectCoreDAL.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = new SqlCommand(
-                    "SELECT AVG(Total_value) AS Avg_Total_Value, " +
+                    "SELECT AVG(Total_value) AS Avg_Total_Value " +
                     "FROM [CoreC].[dbo].[Item_price_history] " +
                     "WHERE Item_ID = @itemID " +
                     "AND Date_recorded >= DATEADD(MONTH, -2, CAST(GETDATE() AS DATE)) " +

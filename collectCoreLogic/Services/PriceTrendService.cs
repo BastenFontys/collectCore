@@ -1,4 +1,5 @@
 ﻿using collectCoreBLL.Mappers;
+using collectCoreDAL.DTO;
 using collectCoreDAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,37 +12,133 @@ namespace collectCoreBLL.Services
     public class PriceTrendService
     {
         private readonly IPricetrendRepo _pricetrendRepo;
+        private readonly IItemRepo _itemRepo;
 
-        public PriceTrendService(IPricetrendRepo pricetrendRepo)
+        public PriceTrendService(IPricetrendRepo pricetrendRepo, IItemRepo itemRepo)
         {
             _pricetrendRepo = pricetrendRepo;
+            _itemRepo = itemRepo;
         }
 
         public async Task<List<float>> GetPriceTrend(int collectionID, string range)
         {
+            List<float> averages = new List<float>();
+            var itemsbyid = await _itemRepo.GetItemsByCollectionID(collectionID);
+            List<ItemDTO> items = new List<ItemDTO>(itemsbyid);
+
             if (range == "1Y")
             {
-                return await _pricetrendRepo.GetPriceTrend1Y(collectionID);
+                float[] monthlyTotals = new float[12];
+
+                foreach (ItemDTO item in items)
+                {
+                    var itemTrend = await _pricetrendRepo.GetPriceTrend1Y(item.ItemID);
+
+                    if (itemTrend != null)
+                    {
+                        for (int i = 0; i < 12; i++)
+                        {
+                            monthlyTotals[i] += itemTrend[i];
+                        }
+                    }
+                }
+
+                return monthlyTotals.ToList();
             }
             else if(range == "6M")
             {
-                return await _pricetrendRepo.GetPriceTrend6M(collectionID);
+                float[] monthlyTotals = new float[6];
+
+                foreach (ItemDTO item in items)
+                {
+                    var itemTrend = await _pricetrendRepo.GetPriceTrend6M(item.ItemID);
+
+                    if (itemTrend != null)
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            monthlyTotals[i] += itemTrend[i];
+                        }
+                    }
+                }
+
+                return monthlyTotals.ToList();
             }
             else if (range == "3M")
             {
-                return await _pricetrendRepo.GetPriceTrend3M(collectionID);
+                float[] monthlyTotals = new float[3];
+
+                foreach (ItemDTO item in items)
+                {
+                    var itemTrend = await _pricetrendRepo.GetPriceTrend3M(item.ItemID);
+
+                    if (itemTrend != null)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            monthlyTotals[i] += itemTrend[i];
+                        }
+                    }
+                }
+
+                return monthlyTotals.ToList();
             }
             else if (range == "1M")
             {
-                return await _pricetrendRepo.GetPriceTrend1M(collectionID);
+                float[] monthlyTotals = new float[4];
+
+                foreach (ItemDTO item in items)
+                {
+                    var itemTrend = await _pricetrendRepo.GetPriceTrend1M(item.ItemID);
+
+                    if (itemTrend != null)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            monthlyTotals[i] += itemTrend[i];
+                        }
+                    }
+                }
+
+                return monthlyTotals.ToList();
             }
             else if (range == "1W")
             {
-                return await _pricetrendRepo.GetPriceTrend1W(collectionID);
+                float[] monthlyTotals = new float[7];
+
+                foreach (ItemDTO item in items)
+                {
+                    var itemTrend = await _pricetrendRepo.GetPriceTrend1W(item.ItemID);
+
+                    if (itemTrend != null)
+                    {
+                        for (int i = 0; i < 7; i++)
+                        {
+                            monthlyTotals[i] += itemTrend[i];
+                        }
+                    }
+                }
+
+                return monthlyTotals.ToList();
             }
             else
             {
-                return await _pricetrendRepo.GetPriceTrend1M(collectionID);
+                float[] monthlyTotals = new float[4];
+
+                foreach (ItemDTO item in items)
+                {
+                    var itemTrend = await _pricetrendRepo.GetPriceTrend1M(item.ItemID);
+
+                    if (itemTrend != null)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            monthlyTotals[i] += itemTrend[i];
+                        }
+                    }
+                }
+
+                return monthlyTotals.ToList();
             }
 
         }
