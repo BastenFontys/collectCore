@@ -26,7 +26,7 @@ namespace collectCoreDAL.Repositories
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                using (SqlCommand command = new SqlCommand("SELECT Post_ID, Post_image, ImageType, Caption, Date_posted FROM [CoreC].[dbo].[Post] WHERE User_ID = @userID;", connection))
+                using (SqlCommand command = new SqlCommand("SELECT Post_ID, Post_image, ImageType, Caption, Date_posted FROM [CoreC].[dbo].[Post] WHERE User_ID = @userID ORDER BY Date_posted DESC;", connection))
                 {
                     command.Parameters.AddWithValue("@userID", userID);
                     try
