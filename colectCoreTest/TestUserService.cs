@@ -24,6 +24,8 @@ namespace colectCoreTest
             _service = new UserService(_mockRepo.Object, _mapper);
         }
 
+
+
         [Fact]
         public async Task GetUserProfileAsync_ValidId_ReturnsUser()
         {
@@ -35,6 +37,18 @@ namespace colectCoreTest
             Assert.NotNull(result);
             Assert.Equal("TestUser", result.Username);
         }
+
+        [Fact]
+        public async Task GetUserProfileAsync_InvalidId_ThrowsArgumentException()
+        {
+            int invalidID = 0;
+
+            var result = await Assert.ThrowsAsync<ArgumentException>(() => _service.GetUserProfileAsync(invalidID));
+
+            Assert.Equal("User ID must be greater than zero. (Parameter 'id')", result.Message);
+        }
+
+
 
         [Fact]
         public async Task GetByCredentialAsync_ValidCredentials_ReturnsUser()
@@ -49,15 +63,44 @@ namespace colectCoreTest
         }
 
         [Fact]
+        public async Task GetByCredentialAsync_InvalidEmail_ThrowsArgumentException()
+        {
+            string invalidEmail = "not-an-email";
+            string password = "validpassword";
+
+            var result = await Assert.ThrowsAsync<ArgumentException>(() =>
+                _service.GetByCredentialAsync(invalidEmail, password)
+            );
+
+            Assert.Equal("Invalid email format. (Parameter 'email')", result.Message);
+        }
+
+
+
+        [Fact]
         public async Task CreateUser_ValidInput_ReturnsCreatedUser()
         {
             var dto = new UserDTO { Username = "NewUser", Email = "new@email.com" };
-            _mockRepo.Setup(r => r.CreateUser("NewUser", "new@email.com", "pw", "Rachelsmolen", 1)).ReturnsAsync(dto);
+            _mockRepo.Setup(r => r.CreateUser("NewUser", "new@email.com", "password", "Rachelsmolen", 1)).ReturnsAsync(dto);
 
-            var result = await _service.CreateUser("NewUser", "new@email.com", "pw", "Rachelsmolen", 1);
+            var result = await _service.CreateUser("NewUser", "new@email.com", "password", "Rachelsmolen", 1);
 
             Assert.NotNull(result);
             Assert.Equal("NewUser", result.Username);
+        }
+
+        [Fact]
+        public async Task CreateUser_PasswordTooShort_ThrowsArgumentException()
+        {
+            string username = "User";
+            string email = "user@example.com";
+            string shortPassword = "123";
+
+            var result = await Assert.ThrowsAsync<ArgumentException>(() =>
+                _service.CreateUser(username, email, shortPassword)
+            );
+
+            Assert.Equal("Password must be at least 6 characters. (Parameter 'password')", result.Message);
         }
     }
 }
