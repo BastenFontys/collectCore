@@ -27,16 +27,37 @@ namespace colectCoreTest
         [Fact]
         public async Task GetUserProfileAsync_ValidId_ReturnsUser()
         {
-            // Arrange
             var dto = new UserDTO { UserID = 1, Username = "TestUser" };
             _mockRepo.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(dto);
 
-            // Act
             var result = await _service.GetUserProfileAsync(1);
 
-            // Assert
             Assert.NotNull(result);
             Assert.Equal("TestUser", result.Username);
+        }
+
+        [Fact]
+        public async Task GetByCredentialAsync_ValidCredentials_ReturnsUser()
+        {
+            var dto = new UserDTO { Email = "test@email.com", Password = "1234", Username = "Test" };
+            _mockRepo.Setup(r => r.GetByCredentialsAsync("test@email.com", "1234")).ReturnsAsync(dto);
+
+            var result = await _service.GetByCredentialAsync("test@email.com", "1234");
+
+            Assert.NotNull(result);
+            Assert.Equal("Test", result.Username);
+        }
+
+        [Fact]
+        public async Task CreateUser_ValidInput_ReturnsCreatedUser()
+        {
+            var dto = new UserDTO { Username = "NewUser", Email = "new@email.com" };
+            _mockRepo.Setup(r => r.CreateUser("NewUser", "new@email.com", "pw", "Rachelsmolen", 1)).ReturnsAsync(dto);
+
+            var result = await _service.CreateUser("NewUser", "new@email.com", "pw", "Rachelsmolen", 1);
+
+            Assert.NotNull(result);
+            Assert.Equal("NewUser", result.Username);
         }
     }
 }
