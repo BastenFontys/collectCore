@@ -26,6 +26,11 @@ namespace collectCoreBLL.Services
             List<Collection> modelList = new List<Collection>();
             var dtoList = await _collectionRepo.GetCollectionsByUserID(userID);
             
+            if (dtoList == null)
+            {
+                return null;
+            }
+
             foreach (CollectionDTO dto in dtoList)
             {
                 modelList.Add(_collectionMapper.ToModel(dto));

@@ -34,7 +34,7 @@ namespace collectCore.Pages
             var collections = await _collectionService.GetCollectionsByUserID(userid);
             if (collections == null)
             {
-                return NotFound();
+                return Page();
             }
 
             Collections = collections;
