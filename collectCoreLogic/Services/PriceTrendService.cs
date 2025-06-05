@@ -85,7 +85,7 @@ namespace collectCoreBLL.Services
             }
             else if (range == "1M")
             {
-                float[] monthlyTotals = new float[4];
+                float[] weeklyTotals = new float[4];
 
                 foreach (ItemDTO item in items)
                 {
@@ -95,16 +95,16 @@ namespace collectCoreBLL.Services
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            monthlyTotals[i] += itemTrend[i];
+                            weeklyTotals[i] += itemTrend[i];
                         }
                     }
                 }
 
-                return monthlyTotals.ToList();
+                return weeklyTotals.ToList();
             }
             else if (range == "1W")
             {
-                float[] monthlyTotals = new float[7];
+                float[] dailyTotals = new float[7];
 
                 foreach (ItemDTO item in items)
                 {
@@ -114,16 +114,16 @@ namespace collectCoreBLL.Services
                     {
                         for (int i = 0; i < 7; i++)
                         {
-                            monthlyTotals[i] += itemTrend[i];
+                            dailyTotals[i] += itemTrend[i];
                         }
                     }
                 }
 
-                return monthlyTotals.ToList();
+                return dailyTotals.ToList();
             }
             else
             {
-                float[] monthlyTotals = new float[4];
+                float[] weeklyTotals = new float[4];
 
                 foreach (ItemDTO item in items)
                 {
@@ -133,12 +133,12 @@ namespace collectCoreBLL.Services
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            monthlyTotals[i] += itemTrend[i];
+                            weeklyTotals[i] += itemTrend[i];
                         }
                     }
                 }
 
-                return monthlyTotals.ToList();
+                return weeklyTotals.ToList();
             }
 
         }
