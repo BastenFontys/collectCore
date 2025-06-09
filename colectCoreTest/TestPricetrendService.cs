@@ -36,7 +36,6 @@ namespace colectCoreTest
             };
 
             _itemRepoMock.Setup(repo => repo.GetItemsByCollectionID(collectionId)).ReturnsAsync(items);
-
             _priceTrendRepoMock.Setup(repo => repo.GetPriceTrend1Y(1)).ReturnsAsync(new List<float> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
             _priceTrendRepoMock.Setup(repo => repo.GetPriceTrend1Y(2)).ReturnsAsync(new List<float> { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 });
 
@@ -48,6 +47,27 @@ namespace colectCoreTest
             Assert.Equal(3, result[0]);
             Assert.Equal(5, result[1]);
             Assert.Equal(7, result[2]);
+        }
+
+        //De onderstaande test is om te testen of mijn service class default naar 1M als er een invalid range is.
+        [Fact]
+        public async Task GetPriceTrend_InvalidRange_Uses1MAsDefault()
+        {
+            var items = new List<ItemDTO>
+            {
+                new ItemDTO { ItemID = 1 }
+            };
+
+            _itemRepoMock.Setup(repo => repo.GetItemsByCollectionID(It.IsAny<int>())).ReturnsAsync(items);
+            _priceTrendRepoMock.Setup(repo => repo.GetPriceTrend1M(1)).ReturnsAsync(new List<float> { 1, 1, 1, 1 });
+
+            var result = await _service.GetPriceTrend(1, "invalid");
+
+            Assert.Equal(4, result.Count);
+            foreach (var value in result)
+            {
+                Assert.Equal(1, value);
+            }
         }
 
     }
