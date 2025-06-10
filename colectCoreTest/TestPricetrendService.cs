@@ -70,5 +70,20 @@ namespace colectCoreTest
             }
         }
 
+        //De onderstaande test is om te testen of mijn service class een juiste list (vol met nullen) terug geeft
+        [Fact]
+        public async Task GetPriceTrend_NoItems_ReturnsZeroList()
+        {
+            _itemRepoMock.Setup(repo => repo.GetItemsByCollectionID(It.IsAny<int>())).ReturnsAsync(new List<ItemDTO>());
+
+            var result = await _service.GetPriceTrend(123, "1Y");
+
+            Assert.Equal(12, result.Count);
+            foreach (var value in result)
+            {
+                Assert.Equal(0, value);
+            }
+        }
+
     }
 }
