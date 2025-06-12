@@ -128,7 +128,7 @@ namespace colectCoreTest
 
             _itemRepoMock.Setup(r => r.GetItemsByCollectionID(collectionId)).ReturnsAsync(items);
 
-            _priceTrendRepoMock.Setup(r => r.GetPriceTrend1Y(1)).ReturnsAsync(new List<float> { 1, 2, 3 }); // Shorter than 12
+            _priceTrendRepoMock.Setup(r => r.GetPriceTrend1Y(1)).ReturnsAsync(new List<float> { 1, 2, 3 });
             _priceTrendRepoMock.Setup(r => r.GetPriceTrend1Y(2)).ReturnsAsync(new List<float> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
 
             var result = await _service.GetPriceTrend(collectionId, "1Y");
